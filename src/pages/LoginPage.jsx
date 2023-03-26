@@ -1,22 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import login from '../assets/imgs/login.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import callApi from '../axios/config';
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+    const onLogin = async (email, password) => {
+        await callApi('api/user/login', 'post', {
+            email: email,
+            password: password,
+        })
+            .then((data) => {
+                console.log('đăng nhập thành công');
+                setTimeout(() => {
+                    navigate('/');
+                }, 1000);
+            })
+            .catch((err) => {
+                console.log('miss');
+            });
+    };
+    const handleSummit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const email = formData.get('email');
+        const password = formData.get('password');
+
+        onLogin(email, password);
+    };
     return (
-        <section className="h-screen w-screen">
+        <form className="h-screen w-screen" onSubmit={handleSummit}>
             <div className="flex justify-center items-center flex-col mt-[20px] xl:flex-row xl:mt-0">
                 <div className=" w-[50%] flex flex-col justify-center items-center gap-y-3 ">
                     <div className="font-bold text-xl w-full items-center justify-center flex">
                         <h3>Welcome to SCIS!</h3>
                     </div>
                     <div className="flex flex-col gap-y-2 w-full ">
-                        <div>Username:</div>
-                        <input type="text" className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none" />
+                        <div>Email:</div>
+                        <input
+                            name="email"
+                            type="text"
+                            className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none"
+                        />
                     </div>
                     <div className="flex flex-col gap-y-2 w-full">
                         <div>Password:</div>
                         <input
+                            name="password"
                             type="password"
                             className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none"
                         />
@@ -34,7 +64,7 @@ const LoginPage = () => {
                     <img src={login} alt="" />
                 </div>
             </div>
-        </section>
+        </form>
     );
 };
 

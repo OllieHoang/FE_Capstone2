@@ -1,10 +1,35 @@
 import React from 'react';
 import register from '../assets/imgs/register.png';
 import { Link } from 'react-router-dom';
+import callApi from '../axios/config';
 
 const RegisterPage = () => {
+    const onSignUp = async (fullName, email, password) => {
+        await callApi('api/user/register', 'post', {
+            fullName: fullName,
+            email: email,
+            password: password,
+        })
+            .then((res) => {
+                console.log(res.data);
+                console.log('Đăng ký thành công');
+            })
+            .catch((err) => {
+                console.log(err);
+                console.log('Thất bại');
+            });
+    };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const fullname = formData.get('fullname');
+        const password = formData.get('password');
+        const email = formData.get('email');
+
+        onSignUp(fullname, email, password);
+    };
     return (
-        <section className="h-screen w-screen">
+        <form className="h-screen w-screen" onSubmit={handleSubmit}>
             <div className="flex items-center flex-col xl:mt-[40px] xl:flex-row gap-x-20 pb-20 ">
                 <div className="object-cover w-80 xl:w-[40%] flex items-center justify-center ml-20 ">
                     <img src={register} alt="" />
@@ -15,19 +40,28 @@ const RegisterPage = () => {
                     </div>
                     <div className="flex flex-col gap-y-2 w-full ">
                         <div>Fullname:</div>
-                        <input type="text" className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none" />
+                        <input
+                            name="fullname"
+                            type="text"
+                            className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none"
+                        />
                     </div>
-                    <div className="flex flex-col gap-y-2 w-full ">
+                    {/* <div className="flex flex-col gap-y-2 w-full ">
                         <div>Username:</div>
                         <input type="text" className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none" />
-                    </div>
+                    </div> */}
                     <div className="flex flex-col gap-y-2 w-full ">
                         <div>Email:</div>
-                        <input type="email" className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none" />
+                        <input
+                            name="email"
+                            type="email"
+                            className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none"
+                        />
                     </div>
                     <div className="flex flex-col gap-y-2 w-full">
                         <div>Password:</div>
                         <input
+                            name="password"
                             type="password"
                             className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none"
                         />
@@ -49,7 +83,7 @@ const RegisterPage = () => {
                     </div>
                 </div>
             </div>
-        </section>
+        </form>
     );
 };
 

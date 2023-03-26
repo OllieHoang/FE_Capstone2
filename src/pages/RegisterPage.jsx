@@ -74,12 +74,18 @@ const RegisterPage = () => {
                         />
                     </div>
                     <div className="w-full flex justify-end my-2">
-                        <Link to="/forgot-pw" className="">
+                        <Link to="/forgotpw" className="">
                             Forgot Password?
                         </Link>
                     </div>
                     <div className="bg-[#656ED3] hover:bg-[#6a73d4] cursor-pointer transition-all rounded-full w-full flex justify-center items-center ">
                         <button className="text-white w-full py-3">Login</button>
+                    </div>
+                    <div className="flex gap-x-2 mt-4">
+                        <div> Have and account ?</div>
+                        <Link to="/login" className="font-bold">
+                            Login
+                        </Link>
                     </div>
                 </div>
             </div>

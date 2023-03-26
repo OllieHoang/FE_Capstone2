@@ -5,11 +5,11 @@ import RegisterPage from './pages/RegisterPage';
 
 function App() {
     return (
-        <div className="overflow-hidden">
+        <div className="">
             <Routes>
                 <Route path="/" element={<HomePage />}></Route>
                 <Route path="/login" element={<LoginPage />}></Route>
-                <Route path="/regiter" element={<RegisterPage />}></Route>
+                <Route path="/register" element={<RegisterPage />}></Route>
             </Routes>
         </div>
     );

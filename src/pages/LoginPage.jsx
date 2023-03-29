@@ -22,6 +22,7 @@ const LoginPage = () => {
                 console.log('miss');
             });
     };
+
     const handleSummit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);

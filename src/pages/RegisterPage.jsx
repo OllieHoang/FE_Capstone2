@@ -1,6 +1,6 @@
 import React from 'react';
 import register from '../assets/imgs/register.png';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import callApi from '../axios/config';
 
 const RegisterPage = () => {
@@ -12,6 +12,7 @@ const RegisterPage = () => {
         })
             .then((res) => {
                 console.log(res.data);
+                Navigate('/verifyaccount');
                 console.log('Đăng ký thành công');
             })
             .catch((err) => {
@@ -79,7 +80,7 @@ const RegisterPage = () => {
                         </Link>
                     </div>
                     <div className="bg-[#656ED3] hover:bg-[#6a73d4] cursor-pointer transition-all rounded-full w-full flex justify-center items-center ">
-                        <button className="text-white w-full py-3">Login</button>
+                        <button className="text-white w-full py-3">Register</button>
                     </div>
                     <div className="flex gap-x-2 mt-4">
                         <div> Have and account ?</div>

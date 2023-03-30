@@ -1,18 +1,18 @@
 import React from 'react';
 import register from '../assets/imgs/register.png';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import callApi from '../axios/config';
 
 const ForgetPassword = () => {
+    const navigate = useNavigate();
     const fg = async (email) => {
         await callApi('api/user/forgot', 'post', {
             email: email,
         })
             .then((res) => {
                 console.log(res.email);
-                console.log('Đã gửi thành công');
                 setTimeout(() => {
-                    Navigate('/verify');
+                    navigate('/verifyaccount');
                 }, 1000);
             })
             .catch((err) => {

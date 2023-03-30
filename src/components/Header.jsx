@@ -5,6 +5,8 @@ import { SidebarContext } from '../contexts/SidebarContext';
 import NavbarRespon from './NavbarRespon';
 import { BiLogIn } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
+import Tippy from '@tippyjs/react/headless';
+import Wrapper from './Wrapper';
 
 const Header = () => {
     const { isActive, setIsActive } = useContext(SidebarContext);
@@ -34,8 +36,28 @@ const Header = () => {
 
             <div className="lg:flex lg:justify-center lg:items-center hidden  h-[60%] gap-x-2">
                 {userName ? (
+                    // <Tippy
+                    //     render={(attrs) => (
+                    //         <div className="box" tabIndex="-1" {...attrs}>
+                    //             My tippy box
+                    //         </div>
+                    //     )}
+                    //     content="Hello"
+                    // >
                     <div className="lg:flex lg:justify-center lg:items-center hidden  h-[60%] gap-x-2 cursor-pointer">
-                        {userName}
+                        <Tippy
+                            interactive
+                            render={(attrs) => (
+                                <Wrapper>
+                                    <div className="box" tabIndex="-1" {...attrs}>
+                                        123
+                                    </div>
+                                </Wrapper>
+                            )}
+                            content="Hello"
+                        >
+                            <div>{userName}</div>
+                        </Tippy>
                         <div
                             onClick={(event) => {
                                 localStorage.removeItem('fullname');
@@ -48,6 +70,7 @@ const Header = () => {
                         </div>
                     </div>
                 ) : (
+                    // </Tippy>
                     <div
                         className={`${
                             isaction

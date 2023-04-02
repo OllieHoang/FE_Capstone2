@@ -12,6 +12,8 @@ const LoginPage = () => {
         })
             .then(async (data) => {
                 await localStorage.setItem('fullname', data.data.fullName?.toString());
+                await localStorage.setItem('userId', data.data.userId?.toString());
+                await localStorage.setItem('email', data.data.email?.toString());
 
                 console.log('đăng nhập thành công');
                 setTimeout(() => {

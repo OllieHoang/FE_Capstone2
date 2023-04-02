@@ -24,8 +24,8 @@ const RegisterPage = () => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const fullname = formData.get('fullname');
-        const password = formData.get('password');
         const email = formData.get('email');
+        const password = formData.get('password');
 
         onSignUp(fullname, email, password);
     };

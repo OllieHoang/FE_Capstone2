@@ -9,6 +9,8 @@ const Profile = () => {
     const [userName, setUserName] = useState();
     const [userEmail, setUserEmail] = useState();
     const [userId, setUserId] = useState();
+    const [dataUser, setDataUser] = useState();
+
     useEffect(() => {
         const dataName = localStorage.getItem('fullname');
         if (dataName) {
@@ -24,22 +26,18 @@ const Profile = () => {
         }
     }, []);
 
-    const onUpdate = async (fullName, email) => {
+    const onUpdate = async (fullName) => {
         await callApi(`api/user/update/${userId}`, 'post', {
             fullName: fullName,
-            email: email,
         })
             .then(async (data) => {
                 try {
-                    const response = await axios.get('http://localhost:8000/api/user/profile');
-                    console.log(response);
-                    console.log(response.data);
+                    const response = await axios.get('http://localhost:8000/api/user');
+                    setDataUser(response.data);
                 } catch (error) {
                     console.log(error);
                 }
-                console.log(data);
-                await localStorage.setItem('fullname', data.data.fullName?.toString());
-
+                localStorage.setItem('fullname', fullName?.toString());
                 console.log('cập nhật thành công');
                 setTimeout(() => {
                     navigate(`/`);
@@ -54,8 +52,7 @@ const Profile = () => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const fullname = formData.get('fullname');
-        const email = formData.get('email');
-        onUpdate(fullname, email);
+        onUpdate(fullname);
     };
 
     const fg = async (password) => {
@@ -108,12 +105,7 @@ const Profile = () => {
                                         <label htmlFor="" className="text-xs">
                                             Email:
                                         </label>
-                                        <input
-                                            type="text"
-                                            placeholder={userEmail}
-                                            value={userEmail}
-                                            className="py-1 outline-none border-b border-gray-400"
-                                        />
+                                        <div className="py-1 outline-none border-b border-gray-400">{userEmail}</div>
                                     </div>
                                 </div>
                                 <button className="mx-2 px-2 py-1 bg-green-500 rounded font-medium w-[160px]">

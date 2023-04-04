@@ -10,7 +10,9 @@ const LoginPage = () => {
             email: email,
             password: password,
         })
-            .then((data) => {
+            .then(async (data) => {
+                await localStorage.setItem('fullname', data.data.fullName?.toString());
+
                 console.log('đăng nhập thành công');
                 setTimeout(() => {
                     navigate('/');

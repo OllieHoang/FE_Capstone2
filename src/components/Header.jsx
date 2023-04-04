@@ -1,27 +1,47 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { SidebarContext } from '../contexts/SidebarContext';
 import NavbarRespon from './NavbarRespon';
 import { BiLogIn } from 'react-icons/bi';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus, AiOutlineQuestionCircle } from 'react-icons/ai';
+import { RiAccountBoxLine, RiMoneyDollarCircleLine, RiQuestionAnswerLine } from 'react-icons/ri';
+
 import Tippy from '@tippyjs/react/headless';
 import Wrapper from './Wrapper';
 
 const Header = () => {
+    const navigate = useNavigate();
     const { isActive, setIsActive } = useContext(SidebarContext);
     const [userName, setUserName] = useState();
     const [isaction, setIsAction] = useState(false);
+    const [userId, setUserId] = useState();
     useEffect(() => {
         const dataName = localStorage.getItem('fullname');
         if (dataName) {
             setUserName(dataName);
         }
+        const dataUserId = localStorage.getItem('userId');
+        if (dataUserId) {
+            setUserId(dataUserId);
+        }
     }, []);
+
+    const handleLogout = (e) => {
+        localStorage.removeItem('fullname');
+        localStorage.removeItem('email');
+        localStorage.removeItem('userId');
+        setUserName('');
+        setUserId('');
+        setIsAction(!isaction);
+        navigate('/login');
+    };
 
     return (
         <div className="flex justify-between items-center px-4 w-full flex-initial h-12 ">
-            <div className="text-2xl text-red-800 ">SCIS.com.vn</div>
+            <div className="text-2xl text-red-800 ">
+                <Link to={'/'}>SCIS.com.vn</Link>
+            </div>
             <div className="flex ">
                 <div className="lg:hidden">
                     <NavbarRespon />
@@ -36,33 +56,64 @@ const Header = () => {
 
             <div className="lg:flex lg:justify-center lg:items-center hidden  h-[60%] gap-x-2">
                 {userName ? (
-                    // <Tippy
-                    //     render={(attrs) => (
-                    //         <div className="box" tabIndex="-1" {...attrs}>
-                    //             My tippy box
-                    //         </div>
-                    //     )}
-                    //     content="Hello"
-                    // >
                     <div className="lg:flex lg:justify-center lg:items-center hidden  h-[60%] gap-x-2 cursor-pointer">
                         <Tippy
                             interactive
+                            delay={[0, 800]}
+                            hideOnClick="toggle"
+                            placement="bottom-end"
                             render={(attrs) => (
-                                <Wrapper>
-                                    <div className="box" tabIndex="-1" {...attrs}>
-                                        123
-                                    </div>
-                                </Wrapper>
+                                <div className="box" tabIndex="-1" {...attrs}>
+                                    <Wrapper>
+                                        <div className=" py-4 px-4">
+                                            <div className="rounded-lg bg-white md:-mx-4 md:rounded-md flex gap-x-2 my-4">
+                                                <div className="rounded-full">avt</div>
+                                                <div>
+                                                    <div>{userName}</div>
+                                                    <div>link</div>
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col my-4 rounded-lg bg-white md:-mx-4 md:rounded-md gap-x-2 ">
+                                                <div className="text-concrete text-sm mb-3 font-semibold">Account</div>
+                                                <div className="flex gap-y-4 flex-col">
+                                                    <div className="flex gap-x-2 items-center ">
+                                                        <RiAccountBoxLine />
+                                                        <Link to={`/profile/${userId}`} className="w-full">
+                                                            My account
+                                                        </Link>
+                                                    </div>
+                                                    <div className="flex gap-x-2 items-center">
+                                                        <RiMoneyDollarCircleLine />
+                                                        <Link to="/payment" className="w-full">
+                                                            Billing
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col my-4 rounded-lg bg-white md:-mx-4 md:rounded-md gap-x-2 ">
+                                                <div className="text-concrete text-sm mb-3 font-semibold">Support</div>
+                                                <div className="flex gap-y-4 flex-col">
+                                                    <div className="flex gap-x-2 items-center">
+                                                        <AiOutlineQuestionCircle />
+                                                        <div>Ask a question</div>
+                                                    </div>
+                                                    <div className="flex gap-x-2 items-center ">
+                                                        <RiQuestionAnswerLine />
+                                                        <div>Submit feedback</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Wrapper>
+                                </div>
                             )}
                             content="Hello"
                         >
                             <div>{userName}</div>
                         </Tippy>
                         <div
-                            onClick={(event) => {
-                                localStorage.removeItem('fullname');
-                                setUserName('');
-                                setIsAction(!isaction);
+                            onClick={() => {
+                                handleLogout();
                             }}
                             className="flex justify-center items-center bg-[#38B2AC] w-[90px] h-full rounded px-4 py-4 text-white text-sm gap-x-2 cursor-pointer"
                         >

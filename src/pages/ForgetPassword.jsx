@@ -24,7 +24,6 @@ const ForgetPassword = () => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const email = formData.get('email');
-
         fg(email);
     };
     return (

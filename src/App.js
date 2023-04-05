@@ -7,6 +7,8 @@ import VerifyAccount from './pages/VerifyAccount';
 import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
 import DeleteAccount from './pages/DeleteAccount';
+import EditAccount from './pages/EditAccount';
+import Test from './pages/Test';
 
 function App() {
     return (
@@ -14,10 +16,13 @@ function App() {
             <Router>
                 <Routes>
                     <Route path="/" element={<HomePage />}></Route>
+                    <Route path="/home/:id" element={<HomePage />}></Route>
+                    <Route path="/test" element={<Test />}></Route>
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/register" element={<RegisterPage />}></Route>
                     <Route path="/forgotpw" element={<ForgetPassword />}></Route>
                     <Route path="/profile/:id" element={<Profile />}></Route>
+                    <Route path="/editacc/:id" element={<EditAccount />}></Route>
                     <Route path="/verifyaccount" element={<VerifyAccount />}></Route>
                     <Route path="/resetpassword" element={<ResetPassword />}></Route>
                     <Route path="/delete" element={<DeleteAccount />}></Route>

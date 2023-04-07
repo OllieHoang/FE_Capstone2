@@ -51,7 +51,7 @@ const Header = () => {
                     <Link to="/rules">Rules</Link>
                     <Link to="/demo">Demo</Link>
                     <Link to="/shortLink">Shorten Link</Link>
-                    <Link to="/tools">Tools</Link>
+                    <Link to="/qrcode">Qrcode</Link>
                 </div>
             </div>
 

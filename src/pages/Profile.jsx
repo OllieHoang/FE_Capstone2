@@ -57,7 +57,7 @@ const Profile = () => {
             <div className="header w-full  bg-gradient-to-r border-b-2 py-2   lg:px-20">
                 <Header />
             </div>
-            <div className="flex justify-between items-center  mt-8 mx-auto w-[70%]">
+            <div className="flex justify-between items-center mx-auto  mt-8  w-[70%]">
                 <Link
                     to={`/profile/${userId}`}
                     className="text-[#28979A] font-medium text-xl flex gap-x-2 items-center hover:opacity-80 transition-all"

@@ -20,7 +20,7 @@ const EditAccount = () => {
         setUserId(userId);
     }, []);
     return (
-        <section>
+        <section className="h-screen w-screen">
             <div className="header w-full  bg-gradient-to-r border-b-2 py-2   lg:px-20">
                 <Header />
             </div>

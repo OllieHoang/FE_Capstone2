@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import login from '../assets/imgs/login.png';
 import { Link, useNavigate } from 'react-router-dom';
 import callApi from '../axios/config';
+// import { toast, ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const [userId, setUserId] = useState();
+    const [verify, setVerify] = useState('Sai mật khẩu hoặc tài khoản');
+
     const onLogin = async (email, password) => {
         await callApi('api/user/login', 'post', {
             email: email,
@@ -13,7 +18,11 @@ const LoginPage = () => {
             .then((data) => {
                 console.log('đăng nhập thành công');
                 setTimeout(() => {
-                    navigate('/');
+                    const userId = localStorage.getItem('userId');
+                    if (userId) {
+                        setUserId(userId);
+                    }
+                    navigate(`/home/${userId}`);
                 }, 1000);
                 const infoUser = {
                     userID: data.data.userId,
@@ -25,7 +34,19 @@ const LoginPage = () => {
                 localStorage.setItem('infoUser', JSON.stringify(infoUser));
             })
             .catch((err) => {
-                console.log('miss');
+                // toast.error('Login err!', {
+                //     position: 'top-right',
+                //     autoClose: 1000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //     progress: undefined,
+                //     theme: 'light',
+                // });
+                // setVerify(verify);
+
+                console.log(err);
             });
     };
     const handleSummit = (event) => {
@@ -67,9 +88,6 @@ const LoginPage = () => {
                     <div className="bg-[#656ED3] hover:bg-[#6a73d4] cursor-pointer transition-all rounded-full w-full flex justify-center items-center ">
                         <button className="text-white w-full py-3">Login</button>
                     </div>
-                </div>
-                <div className="object-cover w-96 xl:w-[40%] flex items-center justify-center ml-20 ">
-                    <img src={login} alt="" />
                 </div>
             </div>
         </form>

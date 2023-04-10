@@ -30,7 +30,7 @@ const Header = (props) => {
                 });
         };
         fechtApi();
-    }, [props.ac]);
+    }, [userName]);
     const handleLogout = () => {
         localStorage.removeItem('infoUser');
         setUserName('');
@@ -42,7 +42,7 @@ const Header = (props) => {
     return (
         <div className="flex justify-between items-center px-4 w-full flex-initial h-12 ">
             <div className="text-2xl text-red-800 ">
-                <Link to={'/'}>SCIS.com.vn</Link>
+                <Link to={`${userId ? `/home/${userId}` : '/'}`}>SCIS.com.vn</Link>
             </div>
             <div className="flex ">
                 <div className="lg:hidden">
@@ -52,13 +52,13 @@ const Header = (props) => {
                     <Link to="/rules">Rules</Link>
                     <Link to="/demo">Demo</Link>
                     <Link to="/shortLink">Shorten Link</Link>
-                    <Link to="/tools">Tools</Link>
+                    <Link to="/qrcode">Qrcode</Link>
                 </div>
             </div>
 
-            <div className="lg:flex lg:justify-center lg:items-center hidden  h-[60%] gap-x-2">
+            <div className="lg:flex lg:justify-center lg:items-center hidden   gap-x-2">
                 {userName ? (
-                    <div className="lg:flex lg:justify-center lg:items-center hidden  h-[60%] gap-x-2 cursor-pointer">
+                    <div className="lg:flex lg:justify-center lg:items-center hidden gap-x-2 cursor-pointer">
                         <Tippy
                             interactive
                             delay={[0, 800]}
@@ -69,10 +69,14 @@ const Header = (props) => {
                                     <Wrapper>
                                         <div className=" py-4 px-4">
                                             <div className="rounded-lg bg-white md:-mx-4 md:rounded-md flex gap-x-2 my-4">
-                                                <div className="rounded-full">avt</div>
+                                                <img
+                                                    // src={avatar}
+                                                    alt=""
+                                                    className="w-8 h-8 rounded-full object-cover"
+                                                />
                                                 <div>
                                                     <div>{userName}</div>
-                                                    <div>link</div>
+                                                    <div className="text-xs text-gray-600">@minhdz142001</div>
                                                 </div>
                                             </div>
                                             <div className="flex flex-col my-4 rounded-lg bg-white md:-mx-4 md:rounded-md gap-x-2 ">
@@ -111,13 +115,16 @@ const Header = (props) => {
                             )}
                             content="Hello"
                         >
-                            <div>{userName}</div>
+                            <div className="flex items-center">
+                                <AiOutlineMenu />
+                                {userName}
+                            </div>
                         </Tippy>
                         <div
                             onClick={() => {
                                 handleLogout();
                             }}
-                            className="flex justify-center items-center bg-[#38B2AC] w-[90px] h-full rounded px-4 py-4 text-white text-sm gap-x-2 cursor-pointer"
+                            className="flex justify-center items-center bg-[#38B2AC] w-[90px] h-full rounded px-2 py-1 text-white text-sm gap-x-2 cursor-pointer"
                         >
                             Logout
                         </div>
@@ -126,21 +133,19 @@ const Header = (props) => {
                     // </Tippy>
                     <div
                         className={`${
-                            isaction
-                                ? 'lg:flex lg:justify-center lg:items-center h-[60%] gap-x-2'
-                                : 'lg:flex h-[60%] gap-x-2'
+                            isaction ? 'lg:flex lg:justify-center lg:items-center  gap-x-2' : 'lg:flex  gap-x-2'
                         } `}
                     >
                         <Link
                             to="/login"
-                            className="flex justify-center items-center w-[110px]] h-full bg-white rounded px-4 py-4 gap-x-2 text-black text-sm cursor-pointer border-2 "
+                            className="flex justify-center items-center w-[110px]] h-full bg-white rounded px-2 py-1 gap-x-2 text-black text-sm cursor-pointer border-2 "
                         >
                             <BiLogIn />
                             Login
                         </Link>
                         <Link
                             to="/register"
-                            className="flex justify-center items-center bg-[#38B2AC] w-[90px] h-full rounded px-4 py-4 text-white text-sm gap-x-2 cursor-pointer"
+                            className="flex justify-center items-center bg-[#38B2AC] w-[90px] h-full rounded px-2 py-1 text-white text-sm gap-x-2 cursor-pointer"
                         >
                             <AiOutlinePlus />
                             Register

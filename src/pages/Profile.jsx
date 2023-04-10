@@ -21,7 +21,6 @@ const Profile = () => {
                     setUserName(data.data.fullName);
                     setOldPass(data.data.password);
                     // setEmail(data.data.email);
-                    console.log('gọi lai api', data.data);
                 })
                 .catch((error) => {
                     console.log('fail', error);

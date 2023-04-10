@@ -18,6 +18,8 @@ const LoginPage = () => {
             .then((data) => {
                 localStorage.setItem('fullname', data.data.fullName?.toString());
                 localStorage.setItem('userId', data.data.userId?.toString());
+                localStorage.setItem('passWord', data.data.password?.toString());
+
                 toast.success('Login sucess!', {
                     position: 'top-right',
                     autoClose: 1000,

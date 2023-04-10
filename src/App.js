@@ -6,6 +6,7 @@ import ForgetPassword from './pages/ForgetPassword';
 import VerifyAccount from './pages/VerifyAccount';
 import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
+import DeleteAccount from './pages/DeleteAccount';
 
 function App() {
     return (
@@ -16,9 +17,10 @@ function App() {
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/register" element={<RegisterPage />}></Route>
                     <Route path="/forgotpw" element={<ForgetPassword />}></Route>
-                    <Route path="/profile/:id" element={<Profile />}></Route>
+                    <Route path="/profile" element={<Profile />}></Route>
                     <Route path="/verifyaccount" element={<VerifyAccount />}></Route>
                     <Route path="/resetpassword" element={<ResetPassword />}></Route>
+                    <Route path="/delete" element={<DeleteAccount />}></Route>
                 </Routes>
             </Router>
         </div>

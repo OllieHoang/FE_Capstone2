@@ -57,16 +57,10 @@ const ForgetPassword = () => {
                         <Link to="/login" className="font-bold border-r border-black pr-8">
                             Login
                         </Link>
-                        <Link to="/login" className="font-bold">
+                        <Link to="/register" className="font-bold">
                             Register
                         </Link>
                     </div>
-                    {/* <div className="flex gap-x-2 mt-4">
-                        <div>Dont have and account ?</div>
-                        <Link to="/login" className="font-bold">
-                            Register
-                        </Link>
-                    </div> */}
                 </div>
             </div>
         </form>

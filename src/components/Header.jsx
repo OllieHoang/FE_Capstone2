@@ -9,28 +9,30 @@ import { RiAccountBoxLine, RiMoneyDollarCircleLine, RiQuestionAnswerLine } from 
 
 import Tippy from '@tippyjs/react/headless';
 import Wrapper from './Wrapper';
+import callApi from '../axios/config';
 
-const Header = () => {
+const Header = (props) => {
     const navigate = useNavigate();
     const { isActive, setIsActive } = useContext(SidebarContext);
-    const [userName, setUserName] = useState();
+    const [userName, setUserName] = useState('');
     const [isaction, setIsAction] = useState(false);
     const [userId, setUserId] = useState();
-    useEffect(() => {
-        const dataName = localStorage.getItem('fullname');
-        if (dataName) {
-            setUserName(dataName);
-        }
-        const dataUserId = localStorage.getItem('userId');
-        if (dataUserId) {
-            setUserId(dataUserId);
-        }
-    }, []);
 
-    const handleLogout = (e) => {
-        localStorage.removeItem('fullname');
-        localStorage.removeItem('email');
-        localStorage.removeItem('userId');
+    useEffect(() => {
+        const infoUser = JSON.parse(localStorage.getItem('infoUser'));
+        const fechtApi = async () => {
+            await callApi(`api/user/profile/${infoUser.userID}`, 'get')
+                .then((data) => {
+                    setUserName(data.data.fullName);
+                })
+                .catch((error) => {
+                    console.log('fail', error);
+                });
+        };
+        fechtApi();
+    }, [props.ac]);
+    const handleLogout = () => {
+        localStorage.removeItem('infoUser');
         setUserName('');
         setUserId('');
         setIsAction(!isaction);
@@ -78,7 +80,7 @@ const Header = () => {
                                                 <div className="flex gap-y-4 flex-col">
                                                     <div className="flex gap-x-2 items-center ">
                                                         <RiAccountBoxLine />
-                                                        <Link to={`/profile/${userId}`} className="w-full">
+                                                        <Link to={`/profile`} className="w-full">
                                                             My account
                                                         </Link>
                                                     </div>

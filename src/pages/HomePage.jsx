@@ -6,7 +6,7 @@ import Main from '../components/Main';
 
 const HomePage = () => {
     return (
-        <section>
+        <>
             <div className="container h-screen">
                 <div className="header w-full  bg-gradient-to-r from-emerald-500 lg:px-20">
                     <Header />
@@ -19,7 +19,7 @@ const HomePage = () => {
                     <Footer />
                 </div>
             </div>
-        </section>
+        </>
     );
 };
 

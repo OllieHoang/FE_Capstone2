@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import login from '../assets/imgs/login.png';
 import { Link, useNavigate } from 'react-router-dom';
 import callApi from '../axios/config';
@@ -10,13 +10,19 @@ const LoginPage = () => {
             email: email,
             password: password,
         })
-            .then(async (data) => {
-                await localStorage.setItem('fullname', data.data.fullName?.toString());
-
+            .then((data) => {
                 console.log('đăng nhập thành công');
                 setTimeout(() => {
                     navigate('/');
                 }, 1000);
+                const infoUser = {
+                    userID: data.data.userId,
+                    // name: data.data.fullName,
+                    roleId: data.data.roleId,
+                    token: data.data.token,
+                    // các thông tin khác
+                };
+                localStorage.setItem('infoUser', JSON.stringify(infoUser));
             })
             .catch((err) => {
                 console.log('miss');
@@ -27,7 +33,7 @@ const LoginPage = () => {
         const formData = new FormData(event.target);
         const email = formData.get('email');
         const password = formData.get('password');
-
+        console.log(email);
         onLogin(email, password);
     };
     return (
@@ -54,7 +60,7 @@ const LoginPage = () => {
                         />
                     </div>
                     <div className="w-full flex justify-end my-2">
-                        <Link to="/forgot-pw" className="">
+                        <Link to="/forgotpw" className="">
                             Forgot Password?
                         </Link>
                     </div>

@@ -1,9 +1,10 @@
 import React from 'react';
 import register from '../assets/imgs/register.png';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import callApi from '../axios/config';
 
 const RegisterPage = () => {
+    const navigate = useNavigate();
     const onSignUp = async (fullName, email, password) => {
         await callApi('api/user/register', 'post', {
             fullName: fullName,
@@ -12,7 +13,7 @@ const RegisterPage = () => {
         })
             .then((res) => {
                 console.log(res.data);
-                Navigate('/verifyaccount');
+                navigate('/verifyaccount');
                 console.log('Đăng ký thành công');
             })
             .catch((err) => {

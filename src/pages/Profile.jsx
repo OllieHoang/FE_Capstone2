@@ -21,14 +21,15 @@ const Profile = () => {
                     setUserName(data.data.fullName);
                     setOldPass(data.data.password);
                     // setEmail(data.data.email);
-                    console.log('gọi lai api');
+                    console.log('gọi lai api', data.data);
                 })
                 .catch((error) => {
                     console.log('fail', error);
                 });
         };
         fechtApi();
-    }, []);
+    }, [oldPass]);
+
     const handleChangeName = (event) => {
         event.preventDefault();
         setUserName(event.target.value);
@@ -45,24 +46,13 @@ const Profile = () => {
                 console.log('cap nhat that bai ', error);
             });
     };
-    const checkOldpass = async (values) => {
-        const errors = {};
 
-        // Kiểm tra mật khẩu
-        const isMatch = await bcrypt.compare(values.password, oldPass);
-        if (!isMatch) {
-            errors.password = 'Mật khẩu không chính xác';
-        }
-
-        return errors;
-    };
     const formik = useFormik({
         initialValues: {
             oldpass: '',
             newpass: '',
             cfpass: '',
         },
-        // checkOldpass,
         validationSchema: Yup.object({
             oldpass: Yup.string()
                 .required('Old password is not empty')
@@ -76,7 +66,7 @@ const Profile = () => {
         }),
         onSubmit: async (values) => {
             const isOldPasswordCorrect = await bcrypt.compare(values.oldpass, oldPass);
-            // console.log(values.oldpass);
+            console.log(isOldPasswordCorrect);
             if (!isOldPasswordCorrect) {
                 formik.setErrors({
                     oldpass: 'Mật khẩu cũ không đúng',
@@ -86,6 +76,8 @@ const Profile = () => {
                 //         confirmNewPassword: 'Mật khẩu mới và xác nhận mật khẩu mới không giống nhau',
                 //     });
             } else {
+                console.log(values.oldpass);
+                console.log(values.newpass);
                 await callApi(`api/user/password/${infoUser.userID}`, 'post', {
                     oldPassword: values.oldpass,
                     newPassword: values.newpass,
@@ -93,9 +85,11 @@ const Profile = () => {
                     .then((data) => {
                         // console.log(data.data);
                         console.log('cap nhat thanh cong');
+                        setOldPass('');
                     })
                     .catch((error) => {
                         console.log('cap nhat that bai ', error);
+                        setOldPass('');
                     });
             }
         },

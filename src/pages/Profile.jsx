@@ -30,28 +30,6 @@ const Profile = () => {
         }
     }, []);
 
-    // const onUpdate = async (fullName) => {
-    //     await callApi(`api/user/update/${userId}`, 'post', {
-    //         fullName: fullName,
-    //     })
-    //         .then(async (data) => {
-    //             try {
-    //                 const response = await axios.get('http://localhost:8000/api/user');
-    //                 setDataUser(response.data);
-    //             } catch (error) {
-    //                 console.log(error);
-    //             }
-    //             localStorage.setItem('fullname', fullName?.toString());
-    //             console.log('cập nhật thành công');
-    //             setTimeout(() => {
-    //                 navigate(`/`);
-    //             }, 1000);
-    //         })
-    //         .catch((err) => {
-    //             console.log('miss');
-    //         });
-    // };
-
     return (
         <section>
             <div className="header w-full  bg-gradient-to-r border-b-2 py-2   lg:px-20">

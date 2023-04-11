@@ -83,7 +83,7 @@ const Header = () => {
                                                 <div className="flex gap-y-4 flex-col">
                                                     <div className="flex gap-x-2 items-center ">
                                                         <RiAccountBoxLine />
-                                                        <Link to={`/profile/${userId}`} className="w-full">
+                                                        <Link to={`/profile`} className="w-full">
                                                             My account
                                                         </Link>
                                                     </div>

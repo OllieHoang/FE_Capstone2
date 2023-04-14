@@ -35,11 +35,8 @@ const Profile = () => {
     }, []);
 
     return (
-        <section>
-            <div className="header w-full  bg-gradient-to-r border-b-2 py-2   lg:px-20">
-                <Header />
-            </div>
-            <div className="flex justify-between items-center mx-auto  mt-8  w-[70%]">
+        <section className="pt-20">
+            <div className="flex justify-between items-center mx-auto mt-2  w-[70%]">
                 <Link
                     to={`/profile`}
                     className="text-[#28979A] font-medium text-xl flex gap-x-2 items-center hover:opacity-80 transition-all"

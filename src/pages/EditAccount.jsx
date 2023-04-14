@@ -16,11 +16,8 @@ const EditAccount = () => {
 
     useEffect(() => {}, []);
     return (
-        <section className="h-screen w-screen">
-            <div className="header w-full  bg-gradient-to-r border-b-2 py-2   lg:px-20">
-                <Header />
-            </div>
-            <div className="w-full mt-4">
+        <section className=" pt-20">
+            <div className="w-full mt-4 h-screen ">
                 <div className="w-[70%] mx-auto">
                     <div className=" flex flex-col gap-y-4">
                         <Link

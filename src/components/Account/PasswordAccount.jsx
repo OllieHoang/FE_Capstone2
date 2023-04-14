@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 
 import bcrypt from 'bcryptjs';
 import callApi from '../../axios/config';
+import { ToastContainer, toast } from 'react-toastify';
 const PasswordAccount = () => {
     const [oldPass, setOldPass] = useState('');
     const infoUser = JSON.parse(localStorage.getItem('infoUser'));
@@ -51,12 +52,30 @@ const PasswordAccount = () => {
                     newPassword: values.newpass,
                 })
                     .then((data) => {
-                        // console.log(data.data);
-                        console.log('cap nhat thanh cong');
+                        toast.success('Update password sucess!', {
+                            position: 'top-right',
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: 'light',
+                        });
                         setOldPass('');
                         formik.resetForm();
                     })
                     .catch((error) => {
+                        toast.error('Update password error!', {
+                            position: 'top-right',
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: 'light',
+                        });
                         console.log('cap nhat that bai ', error);
                         setOldPass('');
                     });
@@ -111,6 +130,7 @@ const PasswordAccount = () => {
                 <button type="submit" className="w-[60%] h-12 bg-[#070B27] rounded my-10 text-white ">
                     Update
                 </button>
+                <ToastContainer />
             </div>
         </form>
     );

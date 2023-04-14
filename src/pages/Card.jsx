@@ -35,7 +35,7 @@ const Card = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [infoUser.userID]);
     //gọi api để post lên database
     const PostQRcode = async (qrCodeName) => {
         await callApi(`api/qrcode/update/${infoUser.userID}`, 'post', {
@@ -77,15 +77,12 @@ const Card = () => {
     };
 
     return (
-        <section>
-            <div className="header w-full bg-gradient-to-r from-emerald-500 lg:px-20">
-                <Header />
-            </div>
-            <div className="lg:px-40 h-screen mt-20 flex  ">
+        <section className="pt-28">
+            <div className="lg:px-40 h-screen  flex  ">
                 <div className="flex flex-col flex-auto gap-y-4">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="flex flex-col flex-auto gap-y-4">
                         {/* img  */}
-                        <div>
+                        <div className="flex flex-col gap-y-2">
                             <div className="text-[#41B60B] text-xl font-medium">Chọn ảnh </div>
                             <div className="flex gap-x-4 border border-[#B2BABB] px-2 py-2 items-center rounded">
                                 <ImEarth className="text-[#707B7C]" />
@@ -93,7 +90,7 @@ const Card = () => {
                             </div>
                         </div>
                         {/* link  */}
-                        <div>
+                        <div className="flex flex-col gap-y-2">
                             <div className="text-[#41B60B] text-xl font-medium">Nhập website (URL)</div>
                             <div className="flex gap-x-1 border border-[#B2BABB] px-2 py-2 items-center rounded">
                                 <div className="flex gap-x-4 items-center justify-center">
@@ -114,13 +111,13 @@ const Card = () => {
                                     onChange={(e) => setQrCodeName(e.target.value)} // Sử dụng onChange để cập nhật giá trị của params khi input thay đổi
                                 />
                             </div>
-                            <div className="flex gap-x-10 mt-2 justify-center">
+                            {/* <div className="flex gap-x-10 mt-2 justify-center">
                                 <div className="px-4  cursor-pointer border-[#B2BABB] border">-</div>
                                 <div className="px-4  cursor-pointer border-[#B2BABB] border">+</div>
-                            </div>
+                            </div> */}
                         </div>
                         {/* name */}
-                        <div className="flex flex-col ">
+                        <div className="flex flex-col gap-y-2 ">
                             <div className="text-[#41B60B]">Enter your name</div>
                             <div className="flex gap-x-4 border border-[#B2BABB] px-2 py-2 items-center rounded">
                                 <input
@@ -131,10 +128,10 @@ const Card = () => {
                                     placeholder="Enter your name"
                                 />
                             </div>
-                            <div className="flex gap-x-10 mt-2 justify-center">
+                            {/* <div className="flex gap-x-10 mt-2 justify-center">
                                 <div className="px-4  cursor-pointer border-[#B2BABB] border">-</div>
                                 <div className="px-4  cursor-pointer border-[#B2BABB] border">+</div>
-                            </div>
+                            </div> */}
                         </div>
                         {/* tao qrcode  */}
                         <div className="bg-[#009F52] mt-4 hover:bg-[#35A46E] transition-all duration-500 justify-center rounded text-white flex gap-x-3 items-center w-[230px] h-[40px]">

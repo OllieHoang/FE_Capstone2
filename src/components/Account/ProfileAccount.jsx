@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import callApi from '../../axios/config';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProfileAccount = () => {
     const [userName, setUserName] = useState('');
@@ -43,6 +44,16 @@ const ProfileAccount = () => {
                 IDcard: values.cardid,
             })
                 .then((data) => {
+                    toast.success('Update profile sucess!', {
+                        position: 'top-right',
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    });
                     console.log('cap nhat thanh cong');
                     setUserName('');
                     setPhone('');
@@ -52,6 +63,16 @@ const ProfileAccount = () => {
                     navigate('/profile');
                 })
                 .catch((error) => {
+                    toast.error('Update profile error!', {
+                        position: 'top-right',
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    });
                     console.log('cap nhat that bai ', error);
                 });
         },
@@ -133,6 +154,7 @@ const ProfileAccount = () => {
                 <button type="submit" className="w-[60%] h-12 bg-[#070B27] rounded my-10 text-white ">
                     Save changes
                 </button>
+                <ToastContainer />
             </div>
         </form>
     );

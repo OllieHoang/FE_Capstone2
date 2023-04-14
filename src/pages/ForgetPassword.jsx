@@ -1,23 +1,39 @@
 import React from 'react';
 import register from '../assets/imgs/register.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import callApi from '../axios/config';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ForgetPassword = () => {
-    const navigate = useNavigate();
     const fg = async (email) => {
         await callApi('api/user/forgot', 'post', {
             email: email,
         })
             .then((res) => {
                 console.log(res.email);
-                setTimeout(() => {
-                    navigate('/verifyaccount');
-                }, 1000);
+                toast.success('Accept sucess, please check your email!', {
+                    position: 'top-right',
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                });
             })
             .catch((err) => {
                 console.log(err);
-                console.log('Thất bại');
+                toast.error('Accept error!', {
+                    position: 'top-right',
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                });
             });
     };
     const handleSubmit = (event) => {
@@ -50,6 +66,7 @@ const ForgetPassword = () => {
 
                     <div className="bg-[#656ED3] hover:bg-[#6a73d4] cursor-pointer transition-all rounded-full w-full flex justify-center items-center ">
                         <button className="text-white w-full py-3">Accept</button>
+                        <ToastContainer />
                     </div>
                     <div className="flex gap-x-6 mt-4">
                         {/* <div> Have and account ?</div> */}

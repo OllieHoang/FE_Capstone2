@@ -9,13 +9,16 @@ import Profile from './pages/Profile';
 import DeleteAccount from './pages/DeleteAccount';
 import EditAccount from './pages/EditAccount';
 import Test from './pages/Test';
-import QRcode from './pages/QRcode';
 import Card from './pages/Card';
+import Header from './components/Header';
 
 function App() {
     return (
         <div className="">
             <Router>
+                <div className="header w-full">
+                    <Header />
+                </div>
                 <Routes>
                     <Route path="/" element={<HomePage />}></Route>
                     <Route path="/home/:id" element={<HomePage />}></Route>
@@ -30,6 +33,7 @@ function App() {
                     <Route path="/delete" element={<DeleteAccount />}></Route>
                     <Route path="/qrcode" element={<Card />}></Route>
                 </Routes>
+                <div></div>
             </Router>
         </div>
     );

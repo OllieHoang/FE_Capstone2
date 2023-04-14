@@ -10,6 +10,7 @@ import DeleteAccount from './pages/DeleteAccount';
 import EditAccount from './pages/EditAccount';
 import Test from './pages/Test';
 import QRcode from './pages/QRcode';
+import Card from './pages/Card';
 
 function App() {
     return (
@@ -27,7 +28,7 @@ function App() {
                     <Route path="/verifyaccount" element={<VerifyAccount />}></Route>
                     <Route path="/resetpassword" element={<ResetPassword />}></Route>
                     <Route path="/delete" element={<DeleteAccount />}></Route>
-                    <Route path="/qrcode" element={<QRcode />}></Route>
+                    <Route path="/qrcode" element={<Card />}></Route>
                 </Routes>
             </Router>
         </div>

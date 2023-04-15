@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
 import callApi from '../axios/config';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import avatar from '../assets/imgs/avtar.jpg';
 
 import { RiAccountCircleLine } from 'react-icons/ri';
@@ -36,9 +34,9 @@ const Profile = () => {
 
     return (
         <section className="">
-            <div className="header w-full">
+            {/* <div className="header w-full">
                 <Header />
-            </div>
+            </div> */}
             <div className="flex justify-between items-center mx-auto  w-[70%] pt-20">
                 <Link
                     to={`/profile`}

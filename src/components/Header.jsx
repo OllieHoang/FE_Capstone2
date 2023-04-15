@@ -26,6 +26,7 @@ const Header = (props) => {
             await callApi(`api/user/profile/${infoUser.userID}`, 'get')
                 .then((data) => {
                     setUserName(data.data.fullName);
+                    setUserId(data.data.userId);
                 })
                 .catch((error) => {
                     console.log('fail', error);
@@ -35,13 +36,12 @@ const Header = (props) => {
     }, [userName]);
     const handleLogout = () => {
         localStorage.removeItem('infoUser');
-        localStorage.removeItem('passWord');
         setUserName('');
         setUserId('');
         setIsAction(!isaction);
         navigate('/login');
     };
-
+    console.log(userId);
     const [isAction2, setIsAction2] = useState(false);
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -58,7 +58,8 @@ const Header = (props) => {
         >
             <div className="flex justify-between items-center  w-full flex-initial h-12 ">
                 <div className="text-2xl text-red-800 font-medium">
-                    <Link to={`${userId ? `/home/${userId}` : '/'}`}>SCIS.com.vn</Link>
+                    <Link to={`${userId ? `/home` : '/'}`}>SCIS.com.vn</Link>
+                    {/* <Link to={`/`}>SCIS.com.vn</Link> */}
                 </div>
                 <div className="flex ">
                     <div className="lg:hidden">
@@ -68,7 +69,7 @@ const Header = (props) => {
                         <Link to="/rules">Rules</Link>
                         <Link to="/demo">Demo</Link>
                         <Link to="/shortLink">Shorten Link</Link>
-                        <Link to="/qrcode">Qrcode</Link>
+                        <Link to={`/qrcode`}>Qrcode</Link>
                     </div>
                 </div>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import callApi from '../axios/config';
 import { toast, ToastContainer } from 'react-toastify';
@@ -7,7 +7,7 @@ import login2 from '../assets/imgs/login2.png';
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    const [userId, setUserId] = useState();
+    // const [userId, setUserId] = useState();
 
     const onLogin = async (email, password) => {
         await callApi('api/user/login', 'post', {
@@ -26,11 +26,12 @@ const LoginPage = () => {
                     theme: 'light',
                 });
                 setTimeout(() => {
-                    const userId = localStorage.getItem('userId');
-                    if (userId) {
-                        setUserId(userId);
+                    const userId = localStorage.getItem('infoUser');
+                    if (infoUser.userID) {
+                        // setUserId(infoUser.userID);
                     }
-                    navigate(`/home/${userId}`);
+                    console.log(userId);
+                    navigate(`/home`);
                 }, 1000);
                 const infoUser = {
                     userID: data.data.userId,
@@ -68,7 +69,9 @@ const LoginPage = () => {
         <form className="h-screen w-screen" onSubmit={handleSummit}>
             <div className="flex flex-col justify-between mt-[20px] xl:flex-row xl:mt-0">
                 <div className=" w-[640px] flex flex-col gap-y-3 ml-10 ">
-                    <div className="text-red-600 text-xl font-medium mt-4">SCSS.com.vn</div>
+                    <Link to={'/'} className="text-red-600 text-xl font-medium mt-4">
+                        SCSS.com.vn
+                    </Link>
                     <div className="ml-10 flex flex-col gap-y-4">
                         <div className="text-3xl font-bold mt-10">Login to your Scss</div>
                         <div className="font-bold text-xl w-full items-center justify-center flex mt-6">

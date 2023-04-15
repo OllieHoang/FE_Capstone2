@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
 import ProfileAccount from '../components/Account/ProfileAccount';
 import PasswordAccount from '../components/Account/PasswordAccount';
 import BillingAccount from '../components/Account/BillingAccount';
@@ -17,9 +16,9 @@ const EditAccount = () => {
     useEffect(() => {}, []);
     return (
         <section className=" ">
-            <div className="header w-full">
+            {/* <div className="header w-full">
                 <Header />
-            </div>
+            </div> */}
             <div className="w-full  h-screen pt-20 ">
                 <div className="w-[70%] mx-auto">
                     <div className=" flex flex-col gap-y-4">

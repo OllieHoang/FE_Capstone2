@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import QRCode from 'qrcode.react';
 //import icont
 import { SlReload } from 'react-icons/sl';
@@ -78,10 +76,10 @@ const Card = () => {
 
     return (
         <section className=" ">
-            <div className="header w-full">
+            {/* <div className="header w-full">
                 <Header />
-            </div>
-            <div className="lg:px-40 h-screen  flex pt-20 ">
+            </div> */}
+            <div className="lg:px-40 h-screen  flex pt-28 ">
                 <div className="flex flex-col flex-auto gap-y-4">
                     <form onSubmit={handleSubmit} className="flex flex-col flex-auto gap-y-4">
                         {/* img  */}
@@ -183,10 +181,6 @@ const Card = () => {
                         </div>
                     )}
                 </div>
-            </div>
-
-            <div>
-                <Footer />
             </div>
         </section>
     );

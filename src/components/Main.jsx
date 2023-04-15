@@ -17,9 +17,9 @@ import { BsSpotify, BsTwitter, BsYoutube } from 'react-icons/bs';
 
 const Main = () => {
     return (
-        <div className="px-20">
+        <div className="px-20 bg-[#fff1e5] pt-20">
             <div>
-                <div className="1 lg:flex flex-col mt-20 lg:flex-row">
+                <div className="1 lg:flex flex-col  lg:flex-row">
                     <div>
                         <img src={SCIS} alt="" />
                     </div>
@@ -223,7 +223,7 @@ const Main = () => {
                     </div>
                 </div>
 
-                <div className="9 my-20 flex justify-center items-center">
+                <div className="9 pb-20 flex justify-center items-center">
                     <img src={group9} alt="" />
                 </div>
             </div>

@@ -10,20 +10,16 @@ import DeleteAccount from './pages/DeleteAccount';
 import EditAccount from './pages/EditAccount';
 import Test from './pages/Test';
 import Card from './pages/Card';
-import Header from './components/Header';
 
 function App() {
     return (
         <div className="">
             <Router>
-                <div className="header w-full">
-                    <Header />
-                </div>
                 <Routes>
+                    <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/" element={<HomePage />}></Route>
                     <Route path="/home/:id" element={<HomePage />}></Route>
                     <Route path="/test" element={<Test />}></Route>
-                    <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/register" element={<RegisterPage />}></Route>
                     <Route path="/forgotpw" element={<ForgetPassword />}></Route>
                     <Route path="/profile" element={<Profile />}></Route>
@@ -33,7 +29,6 @@ function App() {
                     <Route path="/delete" element={<DeleteAccount />}></Route>
                     <Route path="/qrcode" element={<Card />}></Route>
                 </Routes>
-                <div></div>
             </Router>
         </div>
     );

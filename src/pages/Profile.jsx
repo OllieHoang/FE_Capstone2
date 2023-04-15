@@ -35,8 +35,11 @@ const Profile = () => {
     }, []);
 
     return (
-        <section className="pt-20">
-            <div className="flex justify-between items-center mx-auto mt-2  w-[70%]">
+        <section className="">
+            <div className="header w-full">
+                <Header />
+            </div>
+            <div className="flex justify-between items-center mx-auto  w-[70%] pt-20">
                 <Link
                     to={`/profile`}
                     className="text-[#28979A] font-medium text-xl flex gap-x-2 items-center hover:opacity-80 transition-all"
@@ -59,7 +62,7 @@ const Profile = () => {
                         <div className="flex flex-col justify-center  gap-y-2">
                             <h5>My information</h5>
                             <div className="mx-4 flex flex-col gap-y-4">
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         Name:
                                     </label>
@@ -72,25 +75,25 @@ const Profile = () => {
                                         disabled
                                     /> */}
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         Email:
                                     </label>
                                     <div className="text-gray-600 ml-6">{userEmail}</div>
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         Phone number:
                                     </label>
                                     <div className="text-gray-600 ml-6">{phone}</div>
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         Ngày sinh:
                                     </label>
                                     <div className="text-gray-600 ml-6">{birthday}</div>
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         CardId:
                                     </label>

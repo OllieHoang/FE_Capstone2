@@ -77,8 +77,11 @@ const Card = () => {
     };
 
     return (
-        <section className="pt-28">
-            <div className="lg:px-40 h-screen  flex  ">
+        <section className=" ">
+            <div className="header w-full">
+                <Header />
+            </div>
+            <div className="lg:px-40 h-screen  flex pt-20 ">
                 <div className="flex flex-col flex-auto gap-y-4">
                     <form onSubmit={handleSubmit} className="flex flex-col flex-auto gap-y-4">
                         {/* img  */}

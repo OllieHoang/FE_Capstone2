@@ -2,11 +2,15 @@ import React from 'react';
 import Footer from '../components/Footer';
 import Container from '../components/Container';
 import Main from '../components/Main';
+import Header from '../components/Header';
 
 const HomePage = () => {
     return (
         <>
             <div className="container h-screen">
+                <div className="header w-full">
+                    <Header />
+                </div>
                 <div
                     className="header w-full lg:px-20"
                     style={{
@@ -17,7 +21,7 @@ const HomePage = () => {
                 >
                     <Container />
                 </div>
-                <div className="main">
+                <div className="main ">
                     <Main />
                 </div>
                 <div className="footer">

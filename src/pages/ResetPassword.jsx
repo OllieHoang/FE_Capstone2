@@ -4,30 +4,30 @@ import { Link, Navigate } from 'react-router-dom';
 import callApi from '../axios/config';
 
 const ResetPassword = () => {
-    // const fg = async (password) => {
-    //     await callApi('api/user/update/:`${id}`', 'post', {})
-    //         .then((res) => {
-    //             console.log(res.password);
+    const resetpw = async (password) => {
+        await callApi('api/user/update/:`${id}`', 'post', {})
+            .then((res) => {
+                console.log(res.password);
 
-    //             console.log('Đã gửi thành công');
-    //             setTimeout(() => {
-    //                 Navigate('/resetpw');
-    //             }, 1000);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //             console.log('Thất bại');
-    //         });
-    // };
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     const formData = new FormData(event.target);
-    //     const password = formData.get('password');
+                console.log('Đã gửi thành công');
+                setTimeout(() => {
+                    Navigate('/resetpw');
+                }, 1000);
+            })
+            .catch((err) => {
+                console.log(err);
+                console.log('Thất bại');
+            });
+    };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const password = formData.get('password');
 
-    //     fg(password);
-    // };
+        resetpw(password);
+    };
     return (
-        <form className="h-screen w-screen">
+        <form className="h-screen w-screen" onSubmit={handleSubmit}>
             <div className="flex items-center flex-col xl:mt-[40px] xl:flex-row gap-x-20 pb-20 ">
                 <div className="object-cover w-80 xl:w-[40%] flex items-center justify-center ml-20 ">
                     <img src={register} alt="" />
@@ -39,7 +39,7 @@ const ResetPassword = () => {
                     <div>
                         <h4>Enter your new password</h4>
                     </div>
-                    <div className="flex flex-col gap-y-2 w-full mb-3 mt-6">
+                    <div className="flex flex-col gap-y-2 w-full mb-6 mt-6">
                         <div>New password:</div>
                         <input
                             name="password"
@@ -60,12 +60,12 @@ const ResetPassword = () => {
                     </div>
                     <div className="flex gap-x-6 mt-4">
                         {/* <div> Have and account ?</div> */}
-                        <Link to="/login" className="font-bold border-r border-black pr-8">
+                        {/* <Link to="/login" className="font-bold border-r border-black pr-8">
                             Login
                         </Link>
                         <Link to="/login" className="font-bold">
                             Register
-                        </Link>
+                        </Link> */}
                     </div>
                     {/* <div className="flex gap-x-2 mt-4">
                         <div>Dont have and account ?</div>

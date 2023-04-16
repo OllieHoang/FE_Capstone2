@@ -53,10 +53,7 @@ const Profile = () => {
                     Edit Account
                 </Link>
             </div>
-            <div className="h-screen mt-6 mx-auto flex w-[70%] gap-x-20 ">
-                <div className="flex justify-center object-cover w-[450px]">
-                    <img src={avatar} alt="" className="w-[200px]  h-[300px]" />
-                </div>
+            <div className="h-screen mt-6 mx-auto w-[50%]">
                 <div className=" flex flex-col">
                     <div className="w-full">
                         <h2 className="text-2xl flex  justify-center mb-8">My account</h2>
@@ -84,15 +81,15 @@ const Profile = () => {
                                 </div>
                                 <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
-                                        Phone number:
+                                        Phone:
                                     </label>
-                                    <div className="text-gray-600 ml-6">{phone}</div>
+                                    <div className="text-gray-600 ml-6">{phone ? phone : '0123123123'}</div>
                                 </div>
                                 <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
-                                        Ngày sinh:
+                                        Date of birth:
                                     </label>
-                                    <div className="text-gray-600 ml-6">{birthday}</div>
+                                    <div className="text-gray-600 ml-6">{birthday ? birthday : '20/10/2000'}</div>
                                 </div>
                                 <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
@@ -103,7 +100,7 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-4">
+                    <div className="">
                         <div className="w-full flex flex-col justify-center ">
                             <h5 className="mb-2 font-medium mt-4">Current account</h5>
                             <div className="flex gap-x-2 mx-2">
@@ -121,6 +118,7 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
+
                     <form>
                         <div className="flex flex-col gap-y-4">
                             <h2 className="">Danger zone </h2>

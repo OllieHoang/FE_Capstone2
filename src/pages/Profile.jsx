@@ -53,7 +53,10 @@ const Profile = () => {
                     Edit Account
                 </Link>
             </div>
-            <div className="h-screen mt-6 mx-auto w-[50%]">
+            <div className="h-screen mt-6 mx-auto flex w-[70%] gap-x-20 ">
+                <div className="flex justify-center object-cover w-[450px]">
+                    <img src={avatar} alt="" className="w-[200px]  h-[300px]" />
+                </div>
                 <div className=" flex flex-col">
                     <div className="w-full">
                         <h2 className="text-2xl flex  justify-center mb-8">My account</h2>
@@ -118,7 +121,6 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-
                     <form>
                         <div className="flex flex-col gap-y-4">
                             <h2 className="">Danger zone </h2>

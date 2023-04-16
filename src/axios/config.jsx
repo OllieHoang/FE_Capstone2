@@ -11,3 +11,14 @@ export default async function callApi(endpoit = '', method = 'post', body) {
         data: body,
     });
 }
+
+export async function callApiGet(endpoint = '', method = 'get', params) {
+    return await axios({
+        baseURL: `${Api_url}/${endpoint}`,
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        params: params,
+    });
+}

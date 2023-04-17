@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ForgetPassword from './pages/ForgetPassword';
@@ -12,6 +12,7 @@ import Card from './pages/Card';
 import Page from './pages/HomePage';
 import Containt from './components/Containt';
 import AdminPage from './pages/AdminPage';
+import LinkAccount from './pages/LinkAccount';
 
 function App() {
     return (
@@ -65,6 +66,14 @@ function App() {
                             element={
                                 <Page>
                                     <Card />
+                                </Page>
+                            }
+                        ></Route>
+                        <Route
+                            path="/link"
+                            element={
+                                <Page>
+                                    <LinkAccount />
                                 </Page>
                             }
                         ></Route>

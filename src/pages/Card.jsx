@@ -90,6 +90,13 @@ const Card = () => {
                                 <input type="file" onChange={handleFileInput} />
                             </div>
                         </div>
+                        {/* <div className="flex flex-col gap-y-2">
+                            <div className="text-[#41B60B] text-xl font-medium">Chọn ảnh </div>
+                            <div className="flex gap-x-4 border border-[#B2BABB] px-2 py-2 items-center rounded">
+                                <ImEarth className="text-[#707B7C]" />
+                                <input type="file" onChange={handleFileInput} />
+                            </div>
+                        </div> */}
                         {/* link  */}
                         <div className="flex flex-col gap-y-2">
                             <div className="text-[#41B60B] text-xl font-medium">Nhập website (URL)</div>
@@ -151,7 +158,7 @@ const Card = () => {
                                 src={URL.createObjectURL(selectedFile)}
                                 alt="Selected file"
                                 style={{ maxWidth: '100%' }}
-                                className="w-[500px] h-[350px] relative flex object-contain"
+                                className="w-[500px] h-[350px] relative flex object-contain border border-black"
                             />
                             <div className="absolute bottom-10 left-10 text-3xl font-medium text-white">
                                 {inputName}

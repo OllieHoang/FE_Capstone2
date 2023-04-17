@@ -4,6 +4,7 @@ import callApi from '../axios/config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import login2 from '../assets/imgs/login2.png';
+import '../index.css';
 
 const LoginPage = () => {
     const navigate = useNavigate();

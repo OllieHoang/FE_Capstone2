@@ -1,5 +1,4 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
 
 const Mail = ({ title }) => {
     return (
@@ -9,21 +8,13 @@ const Mail = ({ title }) => {
                 <div className="font-bold text-xl">
                     <h4>{title}</h4>
                 </div>
-                <div className="flex justify-between w-[80%]">
+                <div className="flex gap-x-14 w-[90%]">
                     <div className="flex flex-col gap-y-2">
-                        <h3 className="text-sm font-medium">Customer</h3>
+                        <h3 className="text-sm font-medium">Mail</h3>
                         <input
                             type="text"
                             className="border border-[#ADA7A7] px-4 py-2 outline-none text-sm"
                             placeholder="Enter customer name"
-                        />
-                    </div>
-                    <div className="flex flex-col gap-y-2">
-                        <h3 className="text-sm font-medium ">Invoice ID</h3>
-                        <input
-                            type="text"
-                            className="border border-[#ADA7A7] px-4 py-2 outline-none text-sm"
-                            placeholder="Enter invoice ID"
                         />
                     </div>
                     <div className="flex flex-col gap-y-2">
@@ -48,37 +39,31 @@ const Mail = ({ title }) => {
 
             {/* Content  */}
             <div className="mt-8 flex flex-col gap-y-4 ">
-                <div className="w-[80%]">
-                    <Table striped hover>
+                <div className="w-[90%]">
+                    <table className="table border w-full">
                         <thead>
                             <tr>
-                                <th className="">
+                                <th className="text-sm border px-4 py-2">
                                     <input type="checkbox" />
                                 </th>
-                                <th className=" text-sm ">Full Name</th>
-                                <th className=" text-sm ">Role</th>
-                                <th className=" text-sm ">Email</th>
-                                <th className=" text-sm ">Phone</th>
-                                <th className=" text-sm ">Sex</th>
+                                <th className=" text-sm px-4 py-2 border ">Full Name</th>
+                                <th className=" text-sm px-4 py-2 border ">Email</th>
+                                <th className=" text-sm px-4 py-2 border ">Title</th>
+                                <th className=" text-sm px-4 py-2 border ">Content</th>
                             </tr>
                         </thead>
                         <tbody className="">
                             <tr>
-                                <td className="text-sm">
+                                <td className="text-sm border py-3 flex justify-center">
                                     <input type="checkbox" />
                                 </td>
-                                <td className="text-sm">Vo Minh</td>
-                                <td className="text-sm">
-                                    <select name="" id="1">
-                                        <option value="Customer">Customer</option>
-                                        <option value="Manager">Manager</option>
-                                    </select>
-                                </td>
-                                <td className="text-sm">minhdz142001@gmaiil.com</td>
-                                <td className="text-sm">0123123123</td>
+                                <td className="text-sm border px-4 py-2">Vo Minh</td>
+                                <td className="text-sm border px-4 py-2">minhdz142001@gmaiil.com</td>
+                                <td className="text-sm border px-4 py-2">Mua gói</td>
+                                <td className="text-sm border px-4 py-2">Gói vip </td>
                             </tr>
                         </tbody>
-                    </Table>
+                    </table>
                 </div>
             </div>
         </div>

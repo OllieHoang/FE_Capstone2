@@ -1,30 +1,24 @@
 import React from 'react';
-import { RxDashboard } from 'react-icons/rx';
-import { FiMail } from 'react-icons/fi';
-import { BsWallet } from 'react-icons/bs';
-import { IoSettingsOutline } from 'react-icons/io5';
 
-const Nav = ({ name }) => {
+const Nav = ({ title, icon, style }) => {
     return (
-        <div>
-            <div className="w-[240px]  ">
-                <ul className="flex flex-col gap-y-8 font-thin ">
-                    <li className="flex items-center gap-x-2 px-2  text-[#0B63F8] font-normal">
-                        <RxDashboard /> Account
-                    </li>
-                    <li className="flex items-center gap-x-2 px-2  font-normal">
+        <div className="w-[220px] px-6 ">
+            <ul className="">
+                <li className="flex items-center gap-x-2 px-2  font-medium">
+                    {icon} {title}
+                </li>
+                {/* <li className="flex items-center gap-x-2 px-2  font-medium">
                         <FiMail /> Mail
                     </li>
 
-                    <li className="flex items-center gap-x-2 px-2  font-normal">
+                    <li className="flex items-center gap-x-2 px-2  font-medium">
                         <BsWallet /> Billing
                     </li>
-                    <li className="flex items-center gap-x-2 px-2  font-normal">
+                    <li className="flex items-center gap-x-2 px-2  font-medium">
                         <IoSettingsOutline />
                         Setting
-                    </li>
-                </ul>
-            </div>
+                    </li> */}
+            </ul>
         </div>
     );
 };

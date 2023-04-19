@@ -7,7 +7,6 @@ import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
 import DeleteAccount from './pages/DeleteAccount';
 import EditAccount from './pages/EditAccount';
-import Test from './pages/Test';
 import Card from './pages/Card';
 import Page from './pages/HomePage';
 import Containt from './components/Containt';
@@ -44,7 +43,6 @@ function App() {
                                 </Page>
                             }
                         ></Route>
-                        <Route path="/test" element={<Test />}></Route>
                         <Route
                             path="/profile"
                             element={

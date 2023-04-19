@@ -67,7 +67,7 @@ const Header = (props) => {
                     </div>
                     <div className="lg:flex xl:gap-x-14 lg:gap-x-10 hidden justify-between w-full text-[1.1rem] font-normal ">
                         <Link to="/rules">Rules</Link>
-                        <Link to="/demo">Demo</Link>
+                        <Link to="/link">Demo</Link>
                         <Link to="/shortLink">Shorten Link</Link>
                         <Link to={`/qrcode`}>Qrcode</Link>
                     </div>

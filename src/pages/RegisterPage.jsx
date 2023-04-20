@@ -1,10 +1,10 @@
 import React from 'react';
 import register from '../assets/imgs/register.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import callApi from '../axios/config';
+import { toast, ToastContainer } from 'react-toastify';
 
 const RegisterPage = () => {
-    const navigate = useNavigate();
     const onSignUp = async (fullName, email, password) => {
         await callApi('api/user/register', 'post', {
             fullName: fullName,
@@ -13,12 +13,29 @@ const RegisterPage = () => {
         })
             .then((res) => {
                 console.log(res.data);
-                navigate('/verifyaccount');
-                console.log('Đăng ký thành công');
+                toast.success('Register successfull. Please check your mail!', {
+                    position: 'top-right',
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                });
             })
             .catch((err) => {
                 console.log(err);
-                console.log('Thất bại');
+                toast.error('Login err! Account or password is not correct', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                });
             });
     };
     const handleSubmit = (event) => {
@@ -30,6 +47,7 @@ const RegisterPage = () => {
 
         onSignUp(fullname, email, password);
     };
+
     return (
         <form className="h-screen w-screen" onSubmit={handleSubmit}>
             <div className="flex items-center flex-col xl:mt-[40px] xl:flex-row gap-x-20 pb-20 ">
@@ -60,6 +78,7 @@ const RegisterPage = () => {
                             required
                             name="email"
                             type="email"
+                            placeholder="minhdz@gmail.com"
                             className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none"
                         />
                     </div>
@@ -87,6 +106,7 @@ const RegisterPage = () => {
                     </div>
                     <div className="bg-[#656ED3] hover:bg-[#6a73d4] cursor-pointer transition-all rounded-full w-full flex justify-center items-center ">
                         <button className="text-white w-full py-3">Register</button>
+                        <ToastContainer />
                     </div>
                     <div className="flex gap-x-2 mt-4">
                         <div> Have and account ?</div>

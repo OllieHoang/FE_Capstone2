@@ -5,14 +5,13 @@ import callApi from '../axios/config';
 import { ToastContainer, toast } from 'react-toastify';
 
 const ForgetPassword = () => {
-    const navigate = useNavigate();
     const fg = async (email) => {
         await callApi('api/user/forgot', 'post', {
             email: email,
         })
             .then((res) => {
                 console.log(res.email);
-                toast.success('Accept sucess, please check your email!', {
+                toast.success('Send sucess, please check your email!', {
                     position: 'top-right',
                     autoClose: 1000,
                     hideProgressBar: false,
@@ -22,13 +21,10 @@ const ForgetPassword = () => {
                     progress: undefined,
                     theme: 'light',
                 });
-                setTimeout(() => {
-                    navigate('/resetpassword');
-                }, 1000);
             })
             .catch((err) => {
                 console.log(err);
-                toast.error('Accept error!', {
+                toast.error('Account error!', {
                     position: 'top-right',
                     autoClose: 1000,
                     hideProgressBar: false,

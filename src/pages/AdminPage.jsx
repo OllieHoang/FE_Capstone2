@@ -75,7 +75,7 @@ const AdminPage = () => {
                             <div className="flex items-center">
                                 <Tippy
                                     interactive
-                                    delay={[0, 800]}
+                                    trigger="click"
                                     hideOnClick="toggle"
                                     placement="bottom-end"
                                     render={(attrs) => (

@@ -11,7 +11,8 @@ import Card from './pages/Card';
 import Page from './pages/HomePage';
 import Containt from './components/Containt';
 import AdminPage from './pages/AdminPage';
-import LinkAccount from './pages/LinkAccount';
+import CreateLinkAccount from './pages/CreateLinkAccount';
+// import Test from './pages/Test';
 
 function App() {
     return (
@@ -22,6 +23,8 @@ function App() {
                     <Route path="/register" element={<RegisterPage />}></Route>
                     <Route path="/forgotpw" element={<ForgetPassword />}></Route>
                     <Route path="/resetpassword" element={<ResetPassword />}></Route>
+                    {/* <Route path="/test" element={<Test />}></Route> */}
+
                     {/* <Route path="/verifyaccount" element={<VerifyAccount />}></Route> */}
 
                     <Route
@@ -71,7 +74,7 @@ function App() {
                             path="/link"
                             element={
                                 <Page>
-                                    <LinkAccount />
+                                    <CreateLinkAccount />
                                 </Page>
                             }
                         ></Route>

@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
-
+import { RiDeleteBinLine } from 'react-icons/ri';
+import { BsArrowsMove } from 'react-icons/bs';
+import ToggleSwitch from '../components/Toggle/ToggleSwitch';
 // import icon
 import { RxCaretRight } from 'react-icons/rx';
 import { GrClose } from 'react-icons/gr';
@@ -11,9 +13,9 @@ import { ModalContext } from '../contexts/ModalContext';
 
 const Modal = () => {
     const { isActive, setIsActive } = useContext(ModalContext);
-
     const [urlInput, setUrlInput] = useState('');
     const [isLink, setIsLink] = useState(false);
+    console.log(urlInput);
     const handleUrlInputChange = (event) => {
         const value = event.target.value;
         setUrlInput(value);
@@ -55,9 +57,6 @@ const Modal = () => {
                                 className={`w-20 py-3 rounded-3xl font-medium ${
                                     isLink ? 'bg-red-500 text-white ' : 'bg-gray-300 text-gray-500 '
                                 }`}
-                                onClick={() => {
-                                    console.log('123');
-                                }}
                             >
                                 Add
                             </button>
@@ -74,48 +73,48 @@ const Modal = () => {
                             </div>
                         </div>
                         <div className="flex gap-x-2 px-6">
-                            <div class="my-2 flex flex-col items-center justify-center relative transition duration-75 ease-out first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0">
+                            <div className="my-2 flex flex-col items-center justify-center relative transition duration-75 ease-out first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0">
                                 <button
-                                    class="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg  antialiased text-black overflow-hidden mb-2"
+                                    className="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg  antialiased text-black overflow-hidden mb-2"
                                     aria-label="Pinterest"
                                 >
-                                    <div class="flex justify-center items-center" aria-hidden="true">
-                                        <div class="rounded-sm overflow-hidden">
-                                            <img src={imgtt} alt="" class="w-10 h-10 object-contain" />
+                                    <div className="flex justify-center items-center" aria-hidden="true">
+                                        <div className="rounded-sm overflow-hidden">
+                                            <img src={imgtt} alt="" className="w-10 h-10 object-contain" />
                                         </div>
                                     </div>
                                 </button>
-                                <p class="text-black text-xs w-full text-center font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
+                                <p className="text-black text-xs w-full text-center font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
                                     Tiktok
                                 </p>
                             </div>
-                            <div class="my-2 flex flex-col items-center justify-center relative transition duration-75 ease-out first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0">
+                            <div className="my-2 flex flex-col items-center justify-center relative transition duration-75 ease-out first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0">
                                 <button
-                                    class="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg border-marble antialiased text-black overflow-hidden mb-2"
+                                    className="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg border-marble antialiased text-black overflow-hidden mb-2"
                                     aria-label="Pinterest"
                                 >
-                                    <div class="flex justify-center items-center" aria-hidden="true">
-                                        <div class="rounded-sm overflow-hidden">
-                                            <img src={imgtw} alt="" class="w-10 h-10 object-contain" />
+                                    <div className="flex justify-center items-center" aria-hidden="true">
+                                        <div className="rounded-sm overflow-hidden">
+                                            <img src={imgtw} alt="" className="w-10 h-10 object-contain" />
                                         </div>
                                     </div>
                                 </button>
-                                <p class="text-black text-xs w-full text-center font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
+                                <p className="text-black text-xs w-full text-center font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
                                     Twitter
                                 </p>
                             </div>
-                            <div class="my-2 flex flex-col items-center justify-center relative transition duration-75 ease-out first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0">
+                            <div className="my-2 flex flex-col items-center justify-center relative transition duration-75 ease-out first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0">
                                 <button
-                                    class="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg border-marble antialiased text-black overflow-hidden mb-2"
+                                    className="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg border-marble antialiased text-black overflow-hidden mb-2"
                                     aria-label="Pinterest"
                                 >
-                                    <div class="flex justify-center items-center" aria-hidden="true">
-                                        <div class="rounded-sm overflow-hidden">
-                                            <img src={imgpinter} alt="" class="w-10 h-10 object-contain" />
+                                    <div className="flex justify-center items-center" aria-hidden="true">
+                                        <div className="rounded-sm overflow-hidden">
+                                            <img src={imgpinter} alt="" className="w-10 h-10 object-contain" />
                                         </div>
                                     </div>
                                 </button>
-                                <p class="text-black text-xs w-full text-center font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
+                                <p className="text-black text-xs w-full text-center font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
                                     Pinterest
                                 </p>
                             </div>

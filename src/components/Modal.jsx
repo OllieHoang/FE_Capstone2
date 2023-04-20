@@ -53,8 +53,11 @@ const Modal = () => {
                             />
                             <button
                                 className={`w-20 py-3 rounded-3xl font-medium ${
-                                    isLink ? 'bg-red-500 text-white' : 'bg-gray-300 text-gray-500'
+                                    isLink ? 'bg-red-500 text-white ' : 'bg-gray-300 text-gray-500 '
                                 }`}
+                                onClick={() => {
+                                    console.log('123');
+                                }}
                             >
                                 Add
                             </button>

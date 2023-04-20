@@ -62,6 +62,7 @@ const ForgetPassword = () => {
                     <div className="flex flex-col gap-y-2 w-full mb-6">
                         <div>Email:</div>
                         <input
+                            required
                             name="email"
                             type="email"
                             className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none"

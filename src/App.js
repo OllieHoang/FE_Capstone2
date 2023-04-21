@@ -12,6 +12,8 @@ import Page from './pages/HomePage';
 import Containt from './components/Containt';
 import AdminPage from './pages/AdminPage';
 import CreateLinkAccount from './pages/CreateLinkAccount';
+import Demo from './pages/Demo';
+import Appearance from './pages/Appearance';
 // import Test from './pages/Test';
 
 function App() {
@@ -78,6 +80,15 @@ function App() {
                                 </Page>
                             }
                         ></Route>
+                        <Route
+                            path="/appearance"
+                            element={
+                                <Page>
+                                    <Appearance />
+                                </Page>
+                            }
+                        ></Route>
+                        <Route path="/demo" element={<Demo />}></Route>
                         <Route path="/delete" element={<DeleteAccount />}></Route>
                         <Route path="/admin" element={<AdminPage />}></Route>
                     </Routes>

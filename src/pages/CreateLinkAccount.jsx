@@ -1,35 +1,43 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import icon
-import { RxCaretRight } from 'react-icons/rx';
-import { GrClose } from 'react-icons/gr';
-import { IoAdd, IoEarthOutline } from 'react-icons/io5';
-import { FiFacebook, FiInstagram } from 'react-icons/fi';
-import { BsTelephone, BsFillSunFill } from 'react-icons/bs';
-import ContentLinkAccount from '../components/LinkAccount/ContentLinkAccount';
-import { ModalContext } from '../contexts/ModalContext';
+import { IoEarthOutline } from 'react-icons/io5';
+
+import { BsFillSunFill } from 'react-icons/bs';
+import { AiOutlineLeft } from 'react-icons/ai';
+import QRCode from 'qrcode.react';
+import * as htmlToImage from 'html-to-image';
+import { saveAs } from 'file-saver';
+import { HiDownload } from 'react-icons/hi';
+// import { FiFacebook, FiInstagram } from 'react-icons/fi';
+// import { BsTelephone, BsFillSunFill } from 'react-icons/bs';
 import { CiShare2 } from 'react-icons/ci';
 import { AiOutlineRight } from 'react-icons/ai';
 import { HiQrCode } from 'react-icons/hi2';
+import { BsLink45Deg } from 'react-icons/bs';
+import { IoShapesOutline } from 'react-icons/io5';
 
-import imgtt from '../assets/imgs/icontiktok.svg';
-import imgtw from '../assets/imgs/icontw.svg';
-import imgpinter from '../assets/imgs/iconpinterest.svg';
-
-import avatar from '../assets/imgs/avtar.jpg';
 import Tippy from '@tippyjs/react/headless';
 import { Link } from 'react-router-dom';
 import Wrapper from '../components/Wrapper';
 import { ToastContainer, toast } from 'react-toastify';
+import ViewLinkAccount from '../components/LinkAccount/ViewLinkAccount';
+import axios from 'axios';
+import CreateLink from '../components/LinkAccount/CreateLink';
+import Appearance from './Appearance';
+
+const tabs = [
+    { id: '1', title: 'Link', icon: <BsLink45Deg /> },
+    { id: '2', title: 'Appearance', icon: <IoShapesOutline /> },
+];
 
 const LinkAccount = () => {
-    const { isActive, setIsActive } = useContext(ModalContext);
-    const [urlInput, setUrlInput] = useState('');
-    const [isLink, setIsLink] = useState(false);
     const [coppy, setCoppy] = useState('coppy');
-
+    const [type, setType] = useState('Link');
+    const [show, setShow] = useState(true);
     //code sao chep link
     const divRef = useRef(null);
 
+    // handle Coppy Link
     const handleCopyClick = () => {
         // Lấy nội dung của phần tử div
         const text = divRef.current.textContent;
@@ -50,25 +58,55 @@ const LinkAccount = () => {
             setCoppy(coppy);
         }, 2000);
     };
+    //show level 2 QRcode
+    const handleShow = () => {
+        setShow(!show);
+    };
 
-    const handleUrlInputChange = (event) => {
-        const value = event.target.value;
-        setUrlInput(value);
-        setIsLink(isValidUrl(value));
-    };
-    const isValidUrl = (url) => {
-        try {
-            new URL(url);
-            return true;
-        } catch (error) {
-            return false;
-        }
-    };
+    // ham dowload img qrcode
+    function downloadQRCode() {
+        const qrCodeNode = document.getElementById('qr-code');
+        htmlToImage
+            .toPng(qrCodeNode)
+            .then(function (dataUrl) {
+                saveAs(dataUrl, 'qr-code.png');
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+    }
+
+    // get QRCode
+    const defaultUrl = 'https://scis.hocit.com.vn/';
+    const infoUser = JSON.parse(localStorage.getItem('infoUser'));
+    const [qrCodeName, setQrCodeName] = useState('');
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8000/api/qrcode/${infoUser.userID}`)
+            .then((response) => {
+                setQrCodeName(response.data.qrCodeName);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [infoUser.userID]);
 
     return (
         <section>
             <div className="text-base font-medium pt-20  mx-24 flex justify-between border-b-2 py-2">
-                <div>Link</div>
+                <div className="flex gap-x-6">
+                    {tabs.map((tab) => (
+                        <div
+                            className="flex gap-x-1 items-center cursor-pointer"
+                            key={tab.id}
+                            onClick={() => {
+                                setType(tab.title);
+                            }}
+                        >
+                            {tab.icon} {tab.title}
+                        </div>
+                    ))}
+                </div>
                 <ToastContainer />
                 <Tippy
                     interactive
@@ -79,61 +117,117 @@ const LinkAccount = () => {
                     render={(attrs) => (
                         <div className="box" tabIndex="-1" {...attrs}>
                             <Wrapper>
-                                <div className=" py-4 px-4">
-                                    <div className="rounded-lg bg-white md:-mx-4 md:rounded-md flex-col flex gap-x-2 my-4 justify-center gap-y-2">
-                                        <div className="flex justify-center font-base text-base">
-                                            Share your link SCSS
-                                        </div>
-                                        <div className="text-sm flex items-center text-[#757b74] font-extralight">
-                                            Get more visitors by sharing your Linktree everywhere.
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col my-4 rounded-lg bg-white md:-mx-4 md:rounded-md gap-x-2 ">
-                                        <div className="flex gap-y-4 flex-col">
-                                            <div className="flex gap-x-2 items-center ">
-                                                <Link
-                                                    to={`/qrcode`}
-                                                    className="w-full flex items-center justify-between hover:bg-slate-200 hover:rounded-lg"
-                                                >
-                                                    <div className="flex items-center gap-x-2">
-                                                        <HiQrCode className="text-sm bg-pink-300 px-2 py-2 w-10 h-10 rounded-xl" />
-                                                        <div>My SCSS QRcode</div>
-                                                    </div>
-                                                    <AiOutlineRight />
-                                                </Link>
+                                {show ? (
+                                    <div className=" py-4 px-4">
+                                        <div className="rounded-lg bg-white md:-mx-4 md:rounded-md flex-col flex gap-x-2 my-4 justify-center gap-y-2">
+                                            <div className="flex justify-center font-base text-base">
+                                                Share your link SCSS
                                             </div>
-                                            <div className="flex gap-x-2 items-center">
-                                                <Link
-                                                    to={`/`}
-                                                    className="w-full flex items-center justify-between hover:bg-slate-200 hover:rounded-lg"
-                                                >
-                                                    <div className="flex items-center gap-x-2">
-                                                        <IoEarthOutline className="text-sm bg-yellow-300 px-2 py-2 w-10 h-10 rounded-xl" />
-                                                        <div>Open my SCSS</div>
-                                                    </div>
-                                                    <AiOutlineRight />
-                                                </Link>
+                                            <div className="text-sm flex items-center text-[#757b74] font-extralight">
+                                                Get more visitors by sharing your Linktree everywhere.
                                             </div>
                                         </div>
-                                    </div>
+                                        <div className="flex flex-col my-4 rounded-lg bg-white md:-mx-4 md:rounded-md gap-x-2 ">
+                                            <div className="flex gap-y-4 flex-col">
+                                                <div className="flex gap-x-2 items-center ">
+                                                    <div
+                                                        onClick={handleShow}
+                                                        // to={`/qrcode`}
+                                                        className="cursor-pointer w-full flex items-center justify-between hover:bg-slate-200 hover:rounded-lg"
+                                                    >
+                                                        <div className="flex items-center gap-x-2 ">
+                                                            <HiQrCode className="text-sm bg-pink-300 px-2 py-2 w-10 h-10 rounded-xl" />
+                                                            <div>My SCSS QRcode</div>
+                                                        </div>
+                                                        <AiOutlineRight />
+                                                    </div>
+                                                </div>
+                                                <div className="flex gap-x-2 items-center">
+                                                    <Link
+                                                        to={`/demo`}
+                                                        className="w-full flex items-center justify-between hover:bg-slate-200 hover:rounded-lg"
+                                                    >
+                                                        <div className="flex items-center gap-x-2">
+                                                            <IoEarthOutline className="text-sm bg-yellow-300 px-2 py-2 w-10 h-10 rounded-xl" />
+                                                            <div>Open my SCSS</div>
+                                                        </div>
+                                                        <AiOutlineRight />
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    <div className="pt-5">
-                                        <div
-                                            onClick={handleCopyClick}
-                                            className=" flex justify-between  items-center  border-2 h-full rounded px-3 py-2  text-sm gap-x-2 cursor-pointer"
-                                        >
-                                            <div ref={divRef} className="flex items-center gap-x-1">
-                                                <BsFillSunFill />
-                                                SCSS/minhdz
+                                        <div className="pt-5">
+                                            <div
+                                                onClick={handleCopyClick}
+                                                className=" flex justify-between  items-center  border-2 h-full rounded px-3 py-2  text-sm gap-x-2 cursor-pointer"
+                                            >
+                                                <div ref={divRef} className="flex items-center gap-x-1">
+                                                    <BsFillSunFill />
+                                                    scis.hocit.com.vn/minhdz
+                                                </div>
+                                                {coppy ? (
+                                                    <span>coppy</span>
+                                                ) : (
+                                                    <span className="text-green-700">coppied</span>
+                                                )}
                                             </div>
-                                            {coppy ? (
-                                                <span>coppy</span>
-                                            ) : (
-                                                <span className="text-green-700">coppied</span>
-                                            )}
                                         </div>
                                     </div>
-                                </div>
+                                ) : (
+                                    <div className=" py-4 px-4">
+                                        <div className="rounded-lg bg-white md:-mx-4 md:rounded-md flex-col flex gap-x-2 my-4 justify-center gap-y-2">
+                                            <div className="flex justify-between px-4 font-base text-base items-center">
+                                                <AiOutlineLeft
+                                                    onClick={() => {
+                                                        setShow(!show);
+                                                    }}
+                                                    className="cursor-pointer px-2 py-1 w-8 h-8"
+                                                />
+                                                <div>QRcode</div>
+                                                {/* <AiOutlineClose /> */}
+                                            </div>
+                                            <div className="text-sm flex items-center text-[#757b74] font-extralight ">
+                                                Here is your unique Linktree QR code that will direct people to your
+                                                Linktree when scanned.
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col my-4 rounded-lg bg-white md:-mx-4 md:rounded-md gap-x-2 ">
+                                            <div className="flex gap-y-4 justify-center">
+                                                <QRCode value={`${defaultUrl}${qrCodeName}`} size={150} id="qr-code" />
+                                            </div>
+                                        </div>
+                                        <div className="pt-5">
+                                            <div
+                                                onClick={handleCopyClick}
+                                                className=" flex justify-between  items-center  border-2 h-full rounded px-3 py-2  text-sm gap-x-2 cursor-pointer"
+                                            >
+                                                <div ref={divRef} className="flex items-center gap-x-1">
+                                                    <BsFillSunFill />
+                                                    scis.hocit.com.vn/minhdz
+                                                </div>
+                                                {coppy ? (
+                                                    <span>coppy</span>
+                                                ) : (
+                                                    <span className="text-green-700">coppied</span>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div
+                                            className="flex justify-between items-center pb-4 pt-8 cursor-pointer"
+                                            onClick={downloadQRCode}
+                                        >
+                                            <div>
+                                                <div>Dowload .PNG</div>
+                                                <div className="text-xs text-[#757b74]">High quality image</div>
+                                            </div>
+                                            <div className="flex items-center gap-x-1 text-sm font-extralight text-[#757b74]">
+                                                .PNG
+                                                <HiDownload className="w-5 h-5 " />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </Wrapper>
                         </div>
                     )}
@@ -147,162 +241,13 @@ const LinkAccount = () => {
                     <CiShare2 /> Share
                 </div> */}
             </div>
-            <div className="h-screen py-2  flex justify-around relative pb-20">
+            <div className="h-screen py-2 flex justify-around relative pb-20">
                 <div className="w-[750px] h-full mt-4 border-r px-12 placeholder:">
                     {/* add link */}
-                    <div
-                        onClick={() => {
-                            setIsActive(!isActive);
-                        }}
-                        className="bg-red-500 text-white px-2 py-2 rounded-2xl flex justify-center cursor-pointer items-center font-medium gap-x-2"
-                    >
-                        <IoAdd className="text-xl font-medium" />
-                        <button>Add link</button>
-                    </div>
-                    <div className={`${isActive ? ' hidden ' : ' block '}  `}>
-                        <div className="w-full h-[350px] z-20 shadow-lg ">
-                            <div className={`${isActive ? 'hidden ' : 'block'} `}>
-                                <div className="flex justify-between pt-4">
-                                    <div className="font-medium text-sm">Enter Url</div>
-                                    <div
-                                        onClick={() => {
-                                            setIsActive(!isActive);
-                                        }}
-                                        className="px-2 py-1 cursor-pointer flex justify-end mr-6"
-                                    >
-                                        <GrClose />
-                                    </div>
-                                </div>
-                                <div className="bodyModal w-full border-b py-2">
-                                    <div className="flex justify-between px-16 items-center">
-                                        <input
-                                            type="url"
-                                            placeholder="URL"
-                                            className="border rounded-xl w-[80%] px-2 h-12 text-sm"
-                                            value={urlInput}
-                                            onChange={handleUrlInputChange}
-                                        />
-                                        <button
-                                            className={`w-20 py-3 rounded-3xl font-medium ${
-                                                isLink ? 'bg-red-500 text-white ' : 'bg-gray-300 text-gray-500 '
-                                            }`}
-                                        >
-                                            Add
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="mt-4">
-                                    <div className="flex justify-between items-center">
-                                        <div className="text-sm font-medium text-[#666b5f]">
-                                            Inspired by your interests
-                                        </div>
-                                        <div className="flex gap-x-1 items-center font-medium text-[#8129d9] px-2 py-1 cursor-pointer ">
-                                            <div className="border-b border-transparent  hover:border-b hover:border-[#8129d9]">
-                                                View all
-                                            </div>
-                                            <RxCaretRight className="text-xl" />
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-x-2 px-6">
-                                        <div className="my-2 flex flex-col items-center justify-center relative transition duration-75 ease-out first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0">
-                                            <button
-                                                className="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg  antialiased text-black overflow-hidden mb-2"
-                                                aria-label="Pinterest"
-                                            >
-                                                <div className="flex justify-center items-center" aria-hidden="true">
-                                                    <div className="rounded-sm overflow-hidden">
-                                                        <img src={imgtt} alt="" className="w-10 h-10 object-contain" />
-                                                    </div>
-                                                </div>
-                                            </button>
-                                            <p className="text-black text-xs w-full text-center font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
-                                                Tiktok
-                                            </p>
-                                        </div>
-                                        <div className="my-2 flex flex-col items-center justify-center relative transition duration-75 ease-out first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0">
-                                            <button
-                                                className="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg border-marble antialiased text-black overflow-hidden mb-2"
-                                                aria-label="Pinterest"
-                                            >
-                                                <div className="flex justify-center items-center" aria-hidden="true">
-                                                    <div className="rounded-sm overflow-hidden">
-                                                        <img src={imgtw} alt="" className="w-10 h-10 object-contain" />
-                                                    </div>
-                                                </div>
-                                            </button>
-                                            <p className="text-black text-xs w-full text-center font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
-                                                Twitter
-                                            </p>
-                                        </div>
-                                        <div className="my-2 flex flex-col items-center justify-center relative transition duration-75 ease-out first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0">
-                                            <button
-                                                className="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg border-marble antialiased text-black overflow-hidden mb-2"
-                                                aria-label="Pinterest"
-                                            >
-                                                <div className="flex justify-center items-center" aria-hidden="true">
-                                                    <div className="rounded-sm overflow-hidden">
-                                                        <img
-                                                            src={imgpinter}
-                                                            alt=""
-                                                            className="w-10 h-10 object-contain"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </button>
-                                            <p className="text-black text-xs w-full text-center font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
-                                                Pinterest
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        {/* {contents.map((content, index) => {
-                            return <ContentLinkAccount isActive={isActive} />;
-                        })} */}
-                        <ContentLinkAccount isActive={isActive} urlInput={''} />
-                    </div>
+                    {type == 'Link' ? <CreateLink /> : <Appearance />}
                 </div>
-                <div className="flex justify-center mt-5 w-[280px] h-[560px] relative ">
-                    <div className="w-full h-full border-[10px] border-black rounded-[40px] bg-black"></div>
-                    <div className="absolute top-4  w-[90%] h-[90%] flex flex-col items-center text-white gap-y-4">
-                        <div className="flex items-center flex-col">
-                            <img
-                                src={avatar}
-                                alt=""
-                                className="w-16 h-16 mt-10 rounded-full object-contain flex justify-center"
-                            />
-                            <div className="flex flex-col items-center gap-y-1">
-                                <div className="text-sm  font-medium">Võ Minh</div>
-                                <div className="text-xs">Liên hệ: 09633765405</div>
-                            </div>
-                        </div>
-                        <div className="flex flex-col mt-2 gap-y-3 items-center w-full">
-                            <div className="bg-[#222222] rounded-xl w-[90%] h-[36px] flex items-center ">
-                                <div className="h-full w-[20%] flex items-center justify-center">
-                                    <FiFacebook className="w-[80%] h-[60%]" />
-                                </div>
-                                <div className="text-xs flex items-center pl-10">Facebbook</div>
-                            </div>
-                            <div className="bg-[#222222] rounded-xl w-[90%] h-[36px] flex items-center ">
-                                <div className="h-full w-[20%] flex items-center justify-center">
-                                    <FiInstagram className="w-[80%] h-[60%]" />
-                                </div>
-                                <div className="text-xs flex items-center pl-10">Instagram</div>
-                            </div>
-                            <div className="bg-[#222222] rounded-xl w-[90%] h-[36px] flex items-center ">
-                                <div className="h-full w-[20%] flex items-center justify-center">
-                                    <BsTelephone className="  w-[80%] h-[50%]" />
-                                </div>
-                                <div className="text-xs flex items-center pl-10">Zalo</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex gap-x-1 text-xs font-medium items-center absolute bottom-10 text-white ">
-                        SCSS <BsFillSunFill />
-                    </div>
+                <div className="flex justify-center mt-5  relative">
+                    <ViewLinkAccount width={'w-[280px]'} height={'h-[560px]'} />
                 </div>
             </div>
         </section>

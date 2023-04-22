@@ -57,7 +57,7 @@ const RegisterPage = () => {
             cfpass: '',
         },
         validationSchema: Yup.object({
-            email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
+            email: Yup.string().email('Invalid email').required('Please enter your email'),
             password: Yup.string()
                 .required('New password is not empty')
                 .min(6, 'Your new password has at least 6 characters')

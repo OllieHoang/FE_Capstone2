@@ -1,20 +1,15 @@
 import React from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Container from '../components/Container';
-import Main from '../components/Main';
+import Header from '../components/Header';
 
-const HomePage = () => {
+const Page = ({ children }) => {
     return (
         <>
             <div className="container h-screen">
-                <div className="header w-full  bg-gradient-to-r from-emerald-500 lg:px-20">
+                <div className="header w-full">
                     <Header />
-                    <Container />
                 </div>
-                <div className="main">
-                    <Main />
-                </div>
+                <div>{children}</div>
                 <div className="footer">
                     <Footer />
                 </div>
@@ -23,4 +18,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default Page;

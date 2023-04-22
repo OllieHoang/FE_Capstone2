@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
 import callApi from '../axios/config';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import avatar from '../assets/imgs/avtar.jpg';
 
 import { RiAccountCircleLine } from 'react-icons/ri';
@@ -35,11 +33,11 @@ const Profile = () => {
     }, []);
 
     return (
-        <section>
-            <div className="header w-full  bg-gradient-to-r border-b-2 py-2   lg:px-20">
+        <section className="">
+            {/* <div className="header w-full">
                 <Header />
-            </div>
-            <div className="flex justify-between items-center mx-auto  mt-8  w-[70%]">
+            </div> */}
+            <div className="flex justify-between items-center mx-auto  w-[70%] pt-20">
                 <Link
                     to={`/profile`}
                     className="text-[#28979A] font-medium text-xl flex gap-x-2 items-center hover:opacity-80 transition-all"
@@ -62,7 +60,7 @@ const Profile = () => {
                         <div className="flex flex-col justify-center  gap-y-2">
                             <h5>My information</h5>
                             <div className="mx-4 flex flex-col gap-y-4">
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         Name:
                                     </label>
@@ -75,25 +73,25 @@ const Profile = () => {
                                         disabled
                                     /> */}
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         Email:
                                     </label>
                                     <div className="text-gray-600 ml-6">{userEmail}</div>
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         Phone number:
                                     </label>
                                     <div className="text-gray-600 ml-6">{phone}</div>
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         Ngày sinh:
                                     </label>
                                     <div className="text-gray-600 ml-6">{birthday}</div>
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
                                         CardId:
                                     </label>

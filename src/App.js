@@ -1,16 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ForgetPassword from './pages/ForgetPassword';
-import VerifyAccount from './pages/VerifyAccount';
+// import VerifyAccount from './pages/VerifyAccount';
 import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
 import DeleteAccount from './pages/DeleteAccount';
 import EditAccount from './pages/EditAccount';
-import Test from './pages/Test';
 import Card from './pages/Card';
 import Page from './pages/HomePage';
 import Containt from './components/Containt';
+import AdminPage from './pages/AdminPage';
+import CreateLinkAccount from './pages/CreateLinkAccount';
+import Demo from './pages/Demo';
+import Appearance from './pages/Appearance';
+// import Test from './pages/Test';
 
 function App() {
     return (
@@ -21,7 +25,9 @@ function App() {
                     <Route path="/register" element={<RegisterPage />}></Route>
                     <Route path="/forgotpw" element={<ForgetPassword />}></Route>
                     <Route path="/resetpassword" element={<ResetPassword />}></Route>
-                    <Route path="/verifyaccount" element={<VerifyAccount />}></Route>
+                    {/* <Route path="/test" element={<Test />}></Route> */}
+
+                    {/* <Route path="/verifyaccount" element={<VerifyAccount />}></Route> */}
 
                     <Route
                         path="/"
@@ -42,7 +48,6 @@ function App() {
                                 </Page>
                             }
                         ></Route>
-                        <Route path="/test" element={<Test />}></Route>
                         <Route
                             path="/profile"
                             element={
@@ -67,7 +72,25 @@ function App() {
                                 </Page>
                             }
                         ></Route>
+                        <Route
+                            path="/link"
+                            element={
+                                <Page>
+                                    <CreateLinkAccount />
+                                </Page>
+                            }
+                        ></Route>
+                        <Route
+                            path="/appearance"
+                            element={
+                                <Page>
+                                    <Appearance />
+                                </Page>
+                            }
+                        ></Route>
+                        <Route path="/demo" element={<Demo />}></Route>
                         <Route path="/delete" element={<DeleteAccount />}></Route>
+                        <Route path="/admin" element={<AdminPage />}></Route>
                     </Routes>
                 </div>
             </Router>

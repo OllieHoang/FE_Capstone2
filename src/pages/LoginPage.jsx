@@ -4,6 +4,7 @@ import callApi from '../axios/config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import login2 from '../assets/imgs/login2.png';
+import '../index.css';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -80,6 +81,7 @@ const LoginPage = () => {
                         <div className="flex flex-col gap-y-2 w-full ">
                             <div>Email:</div>
                             <input
+                                required
                                 name="email"
                                 type="text"
                                 className="border-[#656ED3] border-2 rounded-full px-4 py-2 outline-none "
@@ -88,6 +90,7 @@ const LoginPage = () => {
                         <div className="flex flex-col gap-y-2 w-full">
                             <div>Password:</div>
                             <input
+                                required
                                 name="password"
                                 type="password"
                                 className="border-[#656ED3] border-2 rounded-full px-4 py-2 outline-none"

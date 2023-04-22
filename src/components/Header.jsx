@@ -67,7 +67,7 @@ const Header = (props) => {
                     </div>
                     <div className="lg:flex xl:gap-x-14 lg:gap-x-10 hidden justify-between w-full text-[1.1rem] font-normal ">
                         <Link to="/rules">Rules</Link>
-                        <Link to="/demo">Demo</Link>
+                        <Link to="/link">Link</Link>
                         <Link to="/shortLink">Shorten Link</Link>
                         <Link to={`/qrcode`}>Qrcode</Link>
                     </div>
@@ -78,9 +78,10 @@ const Header = (props) => {
                         <div className="lg:flex lg:justify-center lg:items-center hidden gap-x-2 cursor-pointer">
                             <Tippy
                                 interactive
-                                delay={[0, 800]}
+                                delay={[0, 0]}
                                 hideOnClick="toggle"
                                 placement="bottom-end"
+                                trigger="click"
                                 render={(attrs) => (
                                     <div className="box" tabIndex="-1" {...attrs}>
                                         <Wrapper>

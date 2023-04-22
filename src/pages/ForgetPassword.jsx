@@ -1,6 +1,6 @@
 import React from 'react';
 import register from '../assets/imgs/register.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import callApi from '../axios/config';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -11,7 +11,7 @@ const ForgetPassword = () => {
         })
             .then((res) => {
                 console.log(res.email);
-                toast.success('Accept sucess, please check your email!', {
+                toast.success('Send sucess, please check your email!', {
                     position: 'top-right',
                     autoClose: 1000,
                     hideProgressBar: false,
@@ -24,7 +24,7 @@ const ForgetPassword = () => {
             })
             .catch((err) => {
                 console.log(err);
-                toast.error('Accept error!', {
+                toast.error('Account error!', {
                     position: 'top-right',
                     autoClose: 1000,
                     hideProgressBar: false,
@@ -58,6 +58,7 @@ const ForgetPassword = () => {
                     <div className="flex flex-col gap-y-2 w-full mb-6">
                         <div>Email:</div>
                         <input
+                            required
                             name="email"
                             type="email"
                             className="border-[#656ED3] border-2 rounded-full px-3 py-1 outline-none"

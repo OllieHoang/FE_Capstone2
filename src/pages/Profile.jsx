@@ -81,15 +81,15 @@ const Profile = () => {
                                 </div>
                                 <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
-                                        Phone number:
+                                        Phone:
                                     </label>
-                                    <div className="text-gray-600 ml-6">{phone}</div>
+                                    <div className="text-gray-600 ml-6">{phone ? phone : '0123123123'}</div>
                                 </div>
                                 <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
-                                        Ngày sinh:
+                                        Date of birth:
                                     </label>
-                                    <div className="text-gray-600 ml-6">{birthday}</div>
+                                    <div className="text-gray-600 ml-6">{birthday ? birthday : '20/10/2000'}</div>
                                 </div>
                                 <div className="flex flex-col gap-y-2">
                                     <label htmlFor="" className="text-xs">
@@ -100,7 +100,7 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-4">
+                    <div className="">
                         <div className="w-full flex flex-col justify-center ">
                             <h5 className="mb-2 font-medium mt-4">Current account</h5>
                             <div className="flex gap-x-2 mx-2">

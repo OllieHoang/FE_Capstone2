@@ -17,6 +17,7 @@ const ProfileAccount = () => {
         const fechtApi = async () => {
             await callApi(`api/user/profile/${infoUser.userID}`, 'get')
                 .then((data) => {
+                    console.log(setUserName(data.data.fullName));
                     setUserName(data.data.fullName);
                     setPhone(data.data.phone);
                     setBirthday(data.data.dateOfBirth);

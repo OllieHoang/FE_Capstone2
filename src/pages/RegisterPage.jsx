@@ -25,17 +25,18 @@ const RegisterPage = () => {
                 });
             })
             .catch((err) => {
-                console.log(err);
-                toast.error('Login err! Account or password is not correct', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                });
+                if (err) {
+                    toast.error('Email already in use! ', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    });
+                }
             });
     };
     const handleSubmit = (event) => {

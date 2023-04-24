@@ -83,7 +83,7 @@ const LoginPage = () => {
                             <input
                                 required
                                 name="email"
-                                type="text"
+                                type="email"
                                 className="border-[#656ED3] border-2 rounded-full px-4 py-2 outline-none "
                             />
                         </div>
@@ -101,8 +101,8 @@ const LoginPage = () => {
                             <button className="text-white w-full py-3">Login</button>
                             <ToastContainer />
                         </div>
-                        <div className="w-full flex justify-center my-2 ">
-                            <Link to="/forgotpw" className="border-b-2 border-[#8129D9] text-[#8129D9]">
+                        <div className="w-full flex justify-end my-2 ">
+                            <Link to="/forgotpw" className=" text-[#6a73d4]">
                                 Forgot Password?
                             </Link>
                         </div>

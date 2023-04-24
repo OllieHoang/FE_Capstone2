@@ -1,29 +1,23 @@
 import React, { useState } from 'react';
+import Modal from 'react-modal';
 
-const Test = () => {
-    const [content, setContent] = useState();
-    const [contents, setContents] = useState([]);
+Modal.setAppElement('#root');
 
-    const handleSubmit = () => {
-        setContents((prev) => [...prev, content]);
-    };
+function Test() {
+    const [name, setName] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const submitForm = () => {};
+
     return (
-        <div className="p-32">
-            <input
-                type="text"
-                value={content}
-                onChange={(e) => {
-                    setContent(e.target.value);
-                }}
-            />
-            <button onClick={handleSubmit}>add</button>
-            <ul>
-                {contents.map((content, ind) => {
-                    return <li key={ind}>{content}</li>;
-                })}
-            </ul>
+        <div className="App">
+            <form>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+
+                <button onClick={submitForm}>Submit</button>
+            </form>
         </div>
     );
-};
+}
 
 export default Test;

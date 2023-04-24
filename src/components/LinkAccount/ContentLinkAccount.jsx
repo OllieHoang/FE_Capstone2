@@ -1,9 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { BsArrowsMove } from 'react-icons/bs';
-import ToggleSwitch from '../../components/Toggle//ToggleSwitch';
+// import ToggleSwitch from '../../components/Toggle//ToggleSwitch';
+import { useContext } from 'react';
+import { CreateLinkAccountContext } from '../../contexts/CreateLinkAccountContext';
+import Modal from 'react-modal';
+import '../Toggle/toggle.css';
 
-const ContentLinkAccount = ({ isActive, urlInput }) => {
+const ContentLinkAccount = ({ isActive, urlInput, data }) => {
+    const { handleUpdateTitle, removeCart } = useContext(CreateLinkAccountContext);
+
+    const updateTitle = (id, newTitle) => {
+        handleUpdateTitle(id, newTitle);
+    };
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const [selectedFile, setSelectedFile] = useState(null);
+    const handleFileInput = (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
+    const customStyles = {
+        content: {
+            borderRadius: '40px',
+            width: '600px',
+            height: '400px',
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+        },
+    };
+
     return (
         <div>
             <div
@@ -18,10 +47,18 @@ const ContentLinkAccount = ({ isActive, urlInput }) => {
                 </div>
                 <div className="flex flex-col w-[70%] gap-x-4">
                     <div className="flex gap-x-4 relative">
-                        <input type="text" placeholder="title " className="outline-none py-2 text-base" />
+                        <input
+                            type="text"
+                            id={data.id}
+                            name={data.title}
+                            value={data.title}
+                            placeholder="title"
+                            onChange={(e) => updateTitle(data.id, e.target.value)}
+                            className="outline-none py-2 text-base"
+                        />
                     </div>
                     <div className="flex gap-x-4 ">
-                        <input type="text" placeholder="Url" value={urlInput} className="outline-none" />
+                        <input type="text" placeholder="Url" defaultValue={urlInput} className="outline-none w-full" />
                     </div>
 
                     <div className="flex justify-between items-start pt-2 gap-2 text-concrete">
@@ -59,6 +96,7 @@ const ContentLinkAccount = ({ isActive, urlInput }) => {
                                 className="transition h-auto py-1 px-2 rounded-sm text-concrete"
                                 data-testid="THUMBNAIL_ConfigButton"
                                 data-static-el-id="THUMBNAIL_ConfigButton"
+                                onClick={() => setModalIsOpen(true)}
                             >
                                 <div className="flex items-center">
                                     <div>
@@ -84,6 +122,7 @@ const ContentLinkAccount = ({ isActive, urlInput }) => {
                                     <span className="sr-only">Thumbnail</span>
                                 </div>
                             </button>
+
                             <button
                                 className="transition h-auto py-1 px-2 rounded-sm text-concrete"
                                 data-testid="PRIORITY_LINK_ConfigButton"
@@ -231,15 +270,53 @@ const ContentLinkAccount = ({ isActive, urlInput }) => {
 
                 <div className="flex flex-col justify-center items-center gap-y-2">
                     <div className="py-1 px-1">
-                        <div className="">
-                            <ToggleSwitch />
-                        </div>
+                        {/* <div className="">
+                            <div
+                                id={data.id}
+                                className={`${
+                                    checked
+                                        ? 'toggle-switch bg-[#016e1a] rounded-full flex items-center '
+                                        : 'toggle-switch bg-gray-500 rounded-full flex items-center '
+                                }`}
+                                onClick={() => {
+                                    console.log(data.id);
+                                    toggleChecked(data.id);
+                                }}
+                            >
+                                <div className={`toggle-switch-inner ${checked ? 'checked' : ''}`}></div>
+                            </div>
+                        </div> */}
                     </div>
-                    <div className="cursor-pointer px-1 py-1">
+                    <div
+                        className="cursor-pointer px-1 py-1"
+                        onClick={() => {
+                            console.log(123);
+                            removeCart(data.id);
+                        }}
+                    >
                         <RiDeleteBinLine className="text-lg font-normal" />
                     </div>
                 </div>
             </div>
+            <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} style={customStyles}>
+                <h2>Chọn file ảnh</h2>
+                <form>
+                    <input type="file" onChange={handleFileInput} />
+                </form>
+                <button
+                    onClick={() => {
+                        setModalIsOpen(false);
+                    }}
+                >
+                    Đóng
+                </button>
+                <img
+                    src={URL.createObjectURL(selectedFile)}
+                    alt="Selected file"
+                    // style={{ maxWidth: '100%' }}
+                    className="w-[500px] h-[350px] relative flex object-contain  "
+                />
+            </Modal>
         </div>
     );
 };

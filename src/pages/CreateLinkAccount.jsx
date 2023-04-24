@@ -23,7 +23,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ViewLinkAccount from '../components/LinkAccount/ViewLinkAccount';
 import axios from 'axios';
 import CreateLink from '../components/LinkAccount/CreateLink';
-import Appearance from './Appearance';
+import Appearance from '../components/LinkAccount/Appearance';
 
 const tabs = [
     { id: '1', title: 'Link', icon: <BsLink45Deg /> },
@@ -77,7 +77,10 @@ const LinkAccount = () => {
     }
 
     // get QRCode
-    const defaultUrl = 'https://scis.hocit.com.vn/';
+    // const defaultUrl = 'https://scis.hocit.com.vn/';
+    const defaultUrl = 'http://localhost:3000/demo/';
+
+    const domain = defaultUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
     const infoUser = JSON.parse(localStorage.getItem('infoUser'));
     const [qrCodeName, setQrCodeName] = useState('');
     useEffect(() => {
@@ -144,7 +147,8 @@ const LinkAccount = () => {
                                                 </div>
                                                 <div className="flex gap-x-2 items-center">
                                                     <Link
-                                                        to={`/demo`}
+                                                        target="_blank"
+                                                        to={`/demo/${qrCodeName}`}
                                                         className="w-full flex items-center justify-between hover:bg-slate-200 hover:rounded-lg"
                                                     >
                                                         <div className="flex items-center gap-x-2">
@@ -164,7 +168,7 @@ const LinkAccount = () => {
                                             >
                                                 <div ref={divRef} className="flex items-center gap-x-1">
                                                     <BsFillSunFill />
-                                                    scis.hocit.com.vn/minhdz
+                                                    {domain}/{qrCodeName}
                                                 </div>
                                                 {coppy ? (
                                                     <span>coppy</span>
@@ -204,7 +208,7 @@ const LinkAccount = () => {
                                             >
                                                 <div ref={divRef} className="flex items-center gap-x-1">
                                                     <BsFillSunFill />
-                                                    scis.hocit.com.vn/minhdz
+                                                    {domain}/{qrCodeName}
                                                 </div>
                                                 {coppy ? (
                                                     <span>coppy</span>
@@ -241,13 +245,13 @@ const LinkAccount = () => {
                     <CiShare2 /> Share
                 </div> */}
             </div>
-            <div className="h-screen py-2 flex justify-around relative pb-20">
+            <div className="h-max-screen py-2 flex justify-around relative pb-20">
                 <div className="w-[750px] h-full mt-4 border-r px-12 placeholder:">
                     {/* add link */}
-                    {type == 'Link' ? <CreateLink /> : <Appearance />}
+                    {type === 'Link' ? <CreateLink /> : <Appearance />}
                 </div>
-                <div className="flex justify-center mt-5  relative">
-                    <ViewLinkAccount width={'w-[280px]'} height={'h-[560px]'} />
+                <div className="flex justify-center mt-5  relative w-[280px] h-[560px]">
+                    <ViewLinkAccount />
                 </div>
             </div>
         </section>

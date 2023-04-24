@@ -4,15 +4,18 @@ import './index.css';
 import App from './App';
 import SidebarProvider from './contexts/SidebarContext';
 import ModalProvider from './contexts/ModalContext';
+import CreateLinkAccountProvider from './contexts/CreateLinkAccountContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <SidebarProvider>
         <ModalProvider>
-            <React.StrictMode>
-                <App />
-            </React.StrictMode>
+            <CreateLinkAccountProvider>
+                <React.StrictMode>
+                    <App />
+                </React.StrictMode>
+            </CreateLinkAccountProvider>
         </ModalProvider>
     </SidebarProvider>,
 );

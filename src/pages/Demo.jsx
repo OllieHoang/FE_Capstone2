@@ -1,39 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import QRCode from 'qrcode.react';
-//import icont
-import { SlReload } from 'react-icons/sl';
-import { ImEarth } from 'react-icons/im';
-import axios from 'axios';
-import device from '../assets/imgs/Device13PM.png';
+import React from 'react';
+import { FiFacebook, FiInstagram } from 'react-icons/fi';
+import { BsTelephone, BsFillSunFill } from 'react-icons/bs';
+import avatar from '../assets/imgs/avtar.jpg';
 
-const Card = () => {
-    const defaultValue = 'http://localhost:3000/';
-
-    //lay user xong get api ra để láy qrcodename
-    const [userIdUser, setUserId] = useState();
-    useEffect(() => {
-        const userId = localStorage.getItem('userId');
-        if (userId) {
-            setUserId(userId);
-        }
-    }, []);
-    const [params, setParams] = useState();
-    useEffect(() => {
-        axios
-            .get(`http://localhost:8000/api/qrcode/${userIdUser}`)
-            .then((response) => {
-                console.log(response.data.qrCodeName);
-                setParams(response.data.qrCodeName);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
-
+const Demo = () => {
     return (
-        <section className="w-full h-full max-h-screen ">
+        <div className="w-full h-full max-h-screen ">
             <div className="flex flex-col  bg-black w-full h-full relative">
                 <div className=" top-4 flex flex-col  text-white gap-y-4 pb-20">
                     <div className="flex items-center flex-col">
@@ -108,12 +80,8 @@ const Card = () => {
                     SCSS <BsFillSunFill />
                 </div>
             </div>
-
-            <div>
-                <Footer />
-            </div>
-        </section>
+        </div>
     );
 };
 
-export default Card;
+export default Demo;

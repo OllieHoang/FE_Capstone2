@@ -32,7 +32,7 @@ const LoginPage = () => {
                         // setUserId(infoUser.userID);
                     }
                     console.log(userId);
-                    navigate(`/home`);
+                    navigate(`/`);
                 }, 1000);
                 const infoUser = {
                     userID: data.data.userId,

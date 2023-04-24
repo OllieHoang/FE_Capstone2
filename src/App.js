@@ -28,20 +28,11 @@ function App() {
                     {/* <Route path="/test" element={<Test />}></Route> */}
 
                     {/* <Route path="/verifyaccount" element={<VerifyAccount />}></Route> */}
-
-                    <Route
-                        path="/"
-                        element={
-                            <Page>
-                                <Containt />
-                            </Page>
-                        }
-                    ></Route>
                 </Routes>
                 <div>
                     <Routes>
                         <Route
-                            path="/home"
+                            path="/"
                             element={
                                 <Page>
                                     <Containt />
@@ -92,6 +83,10 @@ function App() {
                         <Route path="/delete" element={<DeleteAccount />}></Route>
                         <Route path="/admin" element={<AdminPage />}></Route>
                     </Routes>
+
+                    {/* <Routes>
+                        <Route path="/admin" element={<AdminPage />}></Route>
+                    </Routes> */}
                 </div>
             </Router>
         </div>

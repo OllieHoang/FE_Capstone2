@@ -33,55 +33,79 @@ const Card = () => {
     }, []);
 
     return (
-        <section>
-            <div className="header w-full  bg-gradient-to-r from-emerald-500 lg:px-20">
-                <Header />
-            </div>
-            <div className="lg:px-40 h-screen mt-20 flex  ">
-                <div className="flex flex-col flex-auto gap-y-4">
-                    <div>
-                        <div className="text-[#41B60B] text-xl font-medium">Nhập website (URL)</div>
-                        <div className="flex gap-x-1 border border-[#B2BABB] px-2 py-2 items-center rounded">
-                            <div className="flex gap-x-4 items-center justify-center">
-                                <ImEarth className="text-[#707B7C]" />
-                                <input
-                                    type="text"
-                                    defaultValue={defaultValue}
-                                    readOnly
-                                    className="outline-none text-gray-500 w-[175px]"
-                                />
-                            </div>
-                            <input
-                                className="w-full outline-none "
-                                type="text"
-                                defaultValue={params} // Giá trị mặc định của input là "params"
-                                onChange={(e) => setParams(e.target.value)} // Sử dụng onChange để cập nhật giá trị của params khi input thay đổi
-                            />
+        <section className="w-full h-full max-h-screen ">
+            <div className="flex flex-col  bg-black w-full h-full relative">
+                <div className=" top-4 flex flex-col  text-white gap-y-4 pb-20">
+                    <div className="flex items-center flex-col">
+                        <img
+                            src={avatar}
+                            alt=""
+                            className="w-28 h-28 mt-10 rounded-full object-contain flex justify-center"
+                        />
+                        <div className="flex flex-col items-center gap-y-2">
+                            <div className="text-xl  font-medium">Võ Minh</div>
+                            <div className="text-xs">Liên hệ: 09633765405</div>
                         </div>
                     </div>
-
-                    {/* tao qrcode  */}
-                    <div className="bg-[#009F52] hover:bg-[#35A46E] transition-all duration-500 justify-center rounded text-white flex gap-x-3 items-center w-[230px] h-[40px]">
-                        <button
-                            onClick={() => console.log(defaultValue + params)}
-                            className=" w-full h-full cursor-pointer flex items-center justify-center gap-x-2  px-4 py-1"
-                        >
-                            <SlReload />
-                            Create QRCODE
-                        </button>
+                    <div className="flex flex-col mt-2 lg:gap-y-4 items-center w-full">
+                        <div className="bg-[#222222] rounded-xl lg:w-[680px] lg:h-[56px] flex items-center ">
+                            <div className="h-full w-[20%] flex items-center ">
+                                <FiFacebook className="w-[80%] h-[60%]" />
+                            </div>
+                            <div className="text-base flex items-center justify-center w-[50%] pl-10">Facebbook</div>
+                        </div>
+                        <div className="bg-[#222222] rounded-xl lg:w-[680px] lg:h-[56px] flex items-center ">
+                            <div className="h-full w-[20%] flex items-center ">
+                                <FiInstagram className="w-[80%] h-[60%]" />
+                            </div>
+                            <div className="text-base flex items-center justify-center w-[50%] pl-10">Instagram</div>
+                        </div>
+                        <div className="bg-[#222222] rounded-xl lg:w-[680px] lg:h-[56px] flex items-center ">
+                            <div className="h-full w-[20%] flex items-center ">
+                                <BsTelephone className="  w-[80%] h-[50%]" />
+                            </div>
+                            <div className="text-base flex items-center justify-center w-[50%] pl-10">Zalo</div>
+                        </div>
+                        <div className="bg-[#222222] rounded-xl lg:w-[680px] lg:h-[56px] flex items-center ">
+                            <div className="h-full w-[20%] flex items-center ">
+                                <FiFacebook className="w-[80%] h-[60%]" />
+                            </div>
+                            <div className="text-base flex items-center justify-center w-[50%] pl-10">Facebbook</div>
+                        </div>
+                        <div className="bg-[#222222] rounded-xl lg:w-[680px] lg:h-[56px] flex items-center ">
+                            <div className="h-full w-[20%] flex items-center ">
+                                <FiInstagram className="w-[80%] h-[60%]" />
+                            </div>
+                            <div className="text-base flex items-center justify-center w-[50%] pl-10">Instagram</div>
+                        </div>
+                        <div className="bg-[#222222] rounded-xl lg:w-[680px] lg:h-[56px] flex items-center ">
+                            <div className="h-full w-[20%] flex items-center ">
+                                <BsTelephone className="  w-[80%] h-[50%]" />
+                            </div>
+                            <div className="text-base flex items-center justify-center w-[50%] pl-10">Zalo</div>
+                        </div>
+                        <div className="bg-[#222222] rounded-xl lg:w-[680px] lg:h-[56px] flex items-center ">
+                            <div className="h-full w-[20%] flex items-center ">
+                                <FiFacebook className="w-[80%] h-[60%]" />
+                            </div>
+                            <div className="text-base flex items-center justify-center w-[50%] pl-10">Facebbook</div>
+                        </div>
+                        <div className="bg-[#222222] rounded-xl lg:w-[680px] lg:h-[56px] flex items-center ">
+                            <div className="h-full w-[20%] flex items-center ">
+                                <FiInstagram className="w-[80%] h-[60%]" />
+                            </div>
+                            <div className="text-base flex items-center justify-center w-[50%] pl-10">Instagram</div>
+                        </div>
+                        <div className="bg-[#222222] rounded-xl lg:w-[680px] lg:h-[56px] flex items-center ">
+                            <div className="h-full w-[20%] flex items-center ">
+                                <BsTelephone className="  w-[80%] h-[50%]" />
+                            </div>
+                            <div className="text-base flex items-center justify-center w-[50%] pl-10">Zalo</div>
+                        </div>
                     </div>
                 </div>
-                <div className=" flex flex-auto items-center flex-col gap-y-8">
-                    <div className="w-[330px] h-full relative">
-                        <img src={device} alt="Device" className="object-contain w-full h-full" />
-                        <div className="absolute bottom-10 left-10 text-3xl font-medium text-white"></div>
-                        <QRCode
-                            value={`${defaultValue}${params}`}
-                            size={50}
-                            id="qr-code"
-                            className="top-20 right-10 absolute"
-                        />
-                    </div>
+                <div className="flex absolute gap-x-1 font-medium items-center justify-center w-full h-12 text-lg text-white  bottom-0  py-2">
+                    SCSS <BsFillSunFill />
                 </div>
             </div>
 

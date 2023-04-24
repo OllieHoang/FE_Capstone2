@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 // import icon
 
-import avatar from '../assets/imgs/avtar.jpg';
+import avatar from '../../assets/imgs/avtar.jpg';
+import { CreateLinkAccountContext } from '../../contexts/CreateLinkAccountContext';
 
 const Appearance = () => {
+    const {
+        profileTitle,
+        handleProfileTitle,
+        inputValueIntroduction,
+        handleInputChange,
+        maxInputLength,
+        handleFileInput,
+        selectedFile,
+    } = useContext(CreateLinkAccountContext);
+
     const [isFocus, setIsFocus] = useState(false);
     const [isFocus1, setIsFocus1] = useState(false);
-
     const handleInFocus = () => {
         setIsFocus(true);
     };
@@ -17,13 +27,8 @@ const Appearance = () => {
         setIsFocus(false);
         setIsFocus1(false);
     };
-    const [inputValue, setInputValue] = useState('');
-    const maxInputLength = 70;
 
-    function handleInputChange(event) {
-        const value = event.target.value;
-        setInputValue(value.slice(0, maxInputLength));
-    }
+    //introduction
 
     return (
         <section>
@@ -32,11 +37,20 @@ const Appearance = () => {
                 <div className="w-full h-full mt-4  placeholder:">
                     <div className="flex flex-col gap-y-4">
                         <div className="flex gap-x-4 ">
-                            <img src={avatar} alt="" className="w-20 h-20 rounded-full object-contain" />
+                            <img
+                                // src={avatar}
+                                alt=""
+                                defaultValue={selectedFile}
+                                type="file"
+                                name="file"
+                                className="w-20 h-20 rounded-full object-contain"
+                            />
                             <div className="flex flex-col w-[70%] justify-center gap-y-1">
-                                <button className="bg-[#8129d9] text-white font-medium rounded-3xl w-full py-2">
-                                    Pick an image
-                                </button>
+                                <div className="bg-[#8129d9] text-white font-medium rounded-3xl w-full py-2">
+                                    <input type="file" onClick={handleFileInput} />
+                                    <label htmlFor="">Pick an image</label>
+                                </div>
+
                                 <button className=" text-black border-2 font-medium rounded-3xl w-full py-2">
                                     Remove
                                 </button>
@@ -50,7 +64,9 @@ const Appearance = () => {
                                 <input
                                     type="text"
                                     id="input-field"
+                                    defaultValue={profileTitle}
                                     className="outline-none"
+                                    onChange={handleProfileTitle}
                                     onFocus={handleInFocus}
                                     onBlur={handleOutFocus}
                                 />
@@ -65,7 +81,7 @@ const Appearance = () => {
                                 </label>
                                 <textarea
                                     maxLength={maxInputLength}
-                                    value={inputValue}
+                                    value={inputValueIntroduction}
                                     type="text"
                                     id="Introduction"
                                     className="outline-none flex-wrap h"
@@ -74,7 +90,7 @@ const Appearance = () => {
                                     onBlur={handleOutFocus}
                                 />
                                 <p className="absolute top-0 right-2 text-gray-400 text-sm">
-                                    {inputValue.length}/{maxInputLength}
+                                    {inputValueIntroduction.length}/{maxInputLength}
                                 </p>
                             </div>
                         </div>

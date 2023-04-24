@@ -41,7 +41,6 @@ const Header = (props) => {
         setIsAction(!isaction);
         navigate('/login');
     };
-    console.log(userId);
     const [isAction2, setIsAction2] = useState(false);
     useEffect(() => {
         window.addEventListener('scroll', () => {

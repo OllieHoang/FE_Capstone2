@@ -31,7 +31,6 @@ const Card = () => {
         axios
             .get(`http://localhost:8000/api/qrcode/${infoUser.userID}`)
             .then((response) => {
-                console.log(response.data);
                 setQrCodeName(response.data.qrCodeName);
             })
             .catch((error) => {
@@ -120,6 +119,7 @@ const Card = () => {
                                     className="w-full outline-none "
                                     name="params"
                                     type="text"
+                                    readOnly
                                     defaultValue={qrCodeName} // Giá trị mặc định của input là "params"
                                     onChange={(e) => setQrCodeName(e.target.value)} // Sử dụng onChange để cập nhật giá trị của params khi input thay đổi
                                 />
@@ -155,7 +155,7 @@ const Card = () => {
                                 <img
                                     src={URL.createObjectURL(selectedFile)}
                                     alt="Selected file"
-                                    style={{ maxWidth: '100%' }}
+                                    // style={{ maxWidth: '100%' }}
                                     className="w-[500px] h-[350px] relative flex object-contain border border-black"
                                 />
                                 <div className="absolute bottom-10 left-10 text-3xl font-medium text-white">

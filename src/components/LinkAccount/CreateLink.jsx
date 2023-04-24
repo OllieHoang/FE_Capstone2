@@ -7,15 +7,19 @@ import imgtw from '../../assets/imgs/icontw.svg';
 import imgpinter from '../../assets/imgs/iconpinterest.svg';
 import { ModalContext } from '../../contexts/ModalContext';
 import ContentLinkAccount from './ContentLinkAccount';
-const CreateLink = () => {
+import { CreateLinkAccountContext } from '../../contexts/CreateLinkAccountContext';
+const CreateLink = ({ content }) => {
     const { isActive, setIsActive } = useContext(ModalContext);
-    const [urlInput, setUrlInput] = useState('');
+    const { cart, setUrlInput, urlInput, handleAddToCart } = useContext(CreateLinkAccountContext);
+
     const [isLink, setIsLink] = useState(false);
+
     const handleUrlInputChange = (event) => {
         const value = event.target.value;
         setUrlInput(value);
         setIsLink(isValidUrl(value));
     };
+
     const isValidUrl = (url) => {
         try {
             new URL(url);
@@ -24,6 +28,7 @@ const CreateLink = () => {
             return false;
         }
     };
+
     return (
         <div>
             <div
@@ -50,18 +55,24 @@ const CreateLink = () => {
                             </div>
                         </div>
                         <div className="bodyModal w-full border-b py-2">
-                            <div className="flex justify-between px-16 items-center">
+                            <div className="flex justify-between px-16 items-center gap-x-4">
                                 <input
                                     type="url"
                                     placeholder="URL"
-                                    className="border rounded-xl w-[80%] px-2 h-12 text-sm"
                                     value={urlInput}
+                                    className="border rounded-xl w-full px-2 h-12 text-sm"
                                     onChange={handleUrlInputChange}
                                 />
                                 <button
                                     className={`w-20 py-3 rounded-3xl font-medium ${
                                         isLink ? 'bg-red-500 text-white ' : 'bg-gray-300 text-gray-500 '
                                     }`}
+                                    onClick={() => {
+                                        if (isLink) {
+                                            handleAddToCart();
+                                            setIsActive(!isActive);
+                                        }
+                                    }}
                                 >
                                     Add
                                 </button>
@@ -82,6 +93,10 @@ const CreateLink = () => {
                                     <button
                                         className="hover:ring-sand hover:ring-2 hover:ring-inset active:bg-chalk  focus-visible:outline-black w-[88px] h-[88px] outline-none outline-offset-[-2px] bg-marble rounded-lg  antialiased text-black overflow-hidden mb-2"
                                         aria-label="Pinterest"
+                                        onClick={() => {
+                                            handleAddToCart();
+                                            setIsActive(!isActive);
+                                        }}
                                     >
                                         <div className="flex justify-center items-center" aria-hidden="true">
                                             <div className="rounded-sm overflow-hidden">
@@ -129,7 +144,9 @@ const CreateLink = () => {
                 </div>
             </div>
             <div>
-                <ContentLinkAccount isActive={isActive} urlInput={''} />
+                {cart.map((item) => (
+                    <ContentLinkAccount key={item.id} isActive={isActive} urlInput={item.urlInput} data={item} />
+                ))}
             </div>
         </div>
     );

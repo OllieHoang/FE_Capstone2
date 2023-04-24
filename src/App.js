@@ -13,8 +13,7 @@ import Containt from './components/Containt';
 import AdminPage from './pages/AdminPage';
 import CreateLinkAccount from './pages/CreateLinkAccount';
 import Demo from './pages/Demo';
-import Appearance from './pages/Appearance';
-// import Test from './pages/Test';
+import Test from './pages/Test';
 
 function App() {
     return (
@@ -24,8 +23,8 @@ function App() {
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/register" element={<RegisterPage />}></Route>
                     <Route path="/forgotpw" element={<ForgetPassword />}></Route>
-                    <Route path="/resetpassword" element={<ResetPassword />}></Route>
-                    {/* <Route path="/test" element={<Test />}></Route> */}
+                    <Route path="/resetpassword/:token" element={<ResetPassword />}></Route>
+                    <Route path="/test" element={<Test />}></Route>
 
                     {/* <Route path="/verifyaccount" element={<VerifyAccount />}></Route> */}
                 </Routes>
@@ -71,15 +70,8 @@ function App() {
                                 </Page>
                             }
                         ></Route>
-                        <Route
-                            path="/appearance"
-                            element={
-                                <Page>
-                                    <Appearance />
-                                </Page>
-                            }
-                        ></Route>
-                        <Route path="/demo" element={<Demo />}></Route>
+
+                        <Route path={'/demo/:qrcodeName'} element={<Demo />}></Route>
                         <Route path="/delete" element={<DeleteAccount />}></Route>
                         <Route path="/admin" element={<AdminPage />}></Route>
                     </Routes>

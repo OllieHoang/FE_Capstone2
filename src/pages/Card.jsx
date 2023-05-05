@@ -14,16 +14,33 @@ const Card = () => {
         setInputName(e.target.value);
     };
     //chọn ảnh
-    const [selectedFile, setSelectedFile] = useState(null);
-    // const [selectedFile2, setSelectedFile2] = useState(null);
-    const handleFileInput = (e) => {
-        setSelectedFile(e.target.files[0]);
-    };
-    // const handleFileInput2 = (e) => {
-    //     setSelectedFile2(e.target.files[0]);
+    // const [selectedFile, setSelectedFile] = useState(null);
+    // // const [selectedFile2, setSelectedFile2] = useState(null);
+    // const handleFileInput = (e) => {
+    //     setSelectedFile(e.target.files[0]);
     // };
+
+    const [selectedFile1, setSelectedFile1] = useState(null);
+    const [selectedFile2, setSelectedFile2] = useState(null);
+    const [previewUrl1, setPreviewUrl1] = useState(null);
+    const [previewUrl2, setPreviewUrl2] = useState(null);
+
+    const handleFileInputChange1 = (event) => {
+        const file = event.target.files[0];
+        setSelectedFile1(file);
+        setPreviewUrl1(URL.createObjectURL(file));
+    };
+
+    const handleFileInputChange2 = (event) => {
+        const file = event.target.files[0];
+        setSelectedFile2(file);
+        setPreviewUrl2(URL.createObjectURL(file));
+    };
+    const handleFileInput2 = (e) => {
+        setSelectedFile2(e.target.files[0]);
+    };
     // goi api lay qrcode
-    const defaultValue = 'http://localhost:3000/';
+    const defaultValue = 'http://localhost:3000/demo/';
     //lay user xong get api ra để láy qrcodename
     const infoUser = JSON.parse(localStorage.getItem('infoUser'));
     const [qrCodeName, setQrCodeName] = useState('');
@@ -78,11 +95,11 @@ const Card = () => {
     };
 
     return (
-        <section className="  ">
+        <section className="w-auto">
             {/* <div className="header w-full">
                 <Header />
             </div> */}
-            <div className="lg:px-40 h-full flex pt-28 pb-24 ">
+            <div className="w-full h-full flex pt-28 pb-24 gap-x-10 flex-col gap-y-10 px-4 lg:flex-row xl:px-40 ">
                 <div className="flex flex-col flex-auto gap-y-4">
                     <form onSubmit={handleSubmit} className="flex flex-col flex-auto gap-y-4">
                         {/* img  */}
@@ -90,21 +107,21 @@ const Card = () => {
                             <div className="text-[#41B60B] text-xl font-medium">Choose a photo for the front </div>
                             <div className="flex gap-x-4 border border-[#B2BABB] px-2 py-2 items-center rounded">
                                 <ImEarth className="text-[#707B7C]" />
-                                <input type="file" onChange={handleFileInput} />
+                                <input type="file" onChange={handleFileInputChange1} />
                             </div>
                         </div>
-                        {/* <div className="flex flex-col gap-y-2">
+                        <div className="flex flex-col gap-y-2">
                             <div className="text-[#41B60B] text-xl font-medium">Choose a photo for the back side </div>
                             <div className="flex gap-x-4 border border-[#B2BABB] px-2 py-2 items-center rounded">
                                 <ImEarth className="text-[#707B7C]" />
-                                <input type="file" />
+                                <input type="file" onChange={handleFileInputChange2} />
                             </div>
-                        </div> */}
+                        </div>
 
                         {/* link  */}
                         <div className="flex flex-col gap-y-2">
-                            <div className="text-[#41B60B] text-xl font-medium">Nhập website (URL)</div>
-                            <div className="flex gap-x-1 border border-[#B2BABB] px-2 py-2 items-center rounded">
+                            <div className="text-[#41B60B] text-xl font-medium">(URL)</div>
+                            <div className="flex  gap-x-1 border border-[#B2BABB] px-2 py-2 items-center rounded">
                                 <div className="flex gap-x-4 items-center justify-center">
                                     <ImEarth className="text-[#707B7C]" />
                                     <input
@@ -112,11 +129,11 @@ const Card = () => {
                                         name="defaultValue"
                                         defaultValue={defaultValue}
                                         readOnly
-                                        className="outline-none text-gray-500 w-[175px]"
+                                        className="outline-none text-gray-500 w-[230px]"
                                     />
                                 </div>
                                 <input
-                                    className="w-full outline-none "
+                                    className=" outline-none "
                                     name="params"
                                     type="text"
                                     readOnly
@@ -149,15 +166,23 @@ const Card = () => {
                     </form>
                 </div>
                 <div className=" flex flex-auto items-center flex-col gap-y-8">
-                    {selectedFile ? (
+                    {selectedFile1 ? (
                         <div className="flex flex-col gap-y-2">
                             <div className="relative">
-                                <img
-                                    src={URL.createObjectURL(selectedFile)}
+                                {/* <img
+                                    // src={URL.createObjectURL(selectedFile)}
                                     alt="Selected file"
                                     // style={{ maxWidth: '100%' }}
                                     className="w-[500px] h-[350px] relative flex object-contain border border-black"
-                                />
+                                /> */}
+                                {previewUrl1 && (
+                                    <img
+                                        src={previewUrl1}
+                                        alt="Preview 1"
+                                        style={{ maxWidth: '100%' }}
+                                        className="w-[450px] h-[310px] relative flex object-cover border border-black"
+                                    />
+                                )}
                                 <div className="absolute bottom-10 left-10 text-3xl font-medium text-white">
                                     {inputName}
                                 </div>
@@ -169,19 +194,25 @@ const Card = () => {
                                 />
                             </div>
                             <div className="relative">
-                                <img
-                                    src={URL.createObjectURL(selectedFile)}
-                                    alt="Selected file"
-                                    style={{ maxWidth: '100%' }}
-                                    className="w-[500px] h-[350px] relative flex object-contain border border-black"
-                                />
+                                {/* <img
+                                src={URL.createObjectURL(selectedFile)}
+                                alt="Selected file"
+                                style={{ maxWidth: '100%' }}
+                                className="w-[500px] h-[350px] relative flex object-contain border border-black"
+                            /> */}
+                                {previewUrl2 && (
+                                    <img
+                                        src={previewUrl2}
+                                        alt="Preview 2"
+                                        className="w-[450px] h-[310px] relative flex object-cover border border-black"
+                                    />
+                                )}
                             </div>
                         </div>
                     ) : (
-                        //
                         <div className="flex flex-col gap-y-2">
                             <div
-                                className="w-[500px] h-[350px] relative object-contain"
+                                className="w-[450px] h-[310px] relative flex object-cover border border-black"
                                 style={{ backgroundImage: `url(${hinhnen})` }}
                             >
                                 <div className="absolute bottom-10 left-10 text-3xl font-medium text-white">
@@ -195,7 +226,7 @@ const Card = () => {
                                 />
                             </div>
                             <div
-                                className="w-[500px] h-[350px] relative object-contain border-black"
+                                className="w-[450px] h-[310px] relative flex object-cover border border-black"
                                 style={{ backgroundImage: `url(${hinhnen})` }}
                             ></div>
                         </div>

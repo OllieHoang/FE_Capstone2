@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 
 import avatar from '../../assets/imgs/avtar.jpg';
 import { CreateLinkAccountContext } from '../../contexts/CreateLinkAccountContext';
+import { useRef } from 'react';
 
 const Appearance = () => {
     const {
@@ -11,8 +12,9 @@ const Appearance = () => {
         inputValueIntroduction,
         handleInputChange,
         maxInputLength,
-        handleFileInput,
-        selectedFile,
+        handleFileInputChange,
+        imageSrc,
+        removeFileInputChange,
     } = useContext(CreateLinkAccountContext);
 
     const [isFocus, setIsFocus] = useState(false);
@@ -30,6 +32,13 @@ const Appearance = () => {
 
     //introduction
 
+    //img
+    const inputRef = useRef(null);
+
+    const handleButtonClick = () => {
+        inputRef.current.click();
+    };
+
     return (
         <section>
             <div className=" py-2 flex justify-around relative pb-20 flex-col gap-y-4">
@@ -37,21 +46,46 @@ const Appearance = () => {
                 <div className="w-full h-full mt-4  placeholder:">
                     <div className="flex flex-col gap-y-4">
                         <div className="flex gap-x-4 ">
-                            <img
-                                // src={avatar}
-                                alt=""
-                                defaultValue={selectedFile}
-                                type="file"
-                                name="file"
-                                className="w-20 h-20 rounded-full object-contain"
-                            />
+                            {imageSrc ? (
+                                // eslint-disable-next-line jsx-a11y/alt-text
+                                <img
+                                    src={imageSrc}
+                                    type="file"
+                                    name="file"
+                                    className="w-20 h-20 rounded-full object-cover"
+                                />
+                            ) : (
+                                <img
+                                    alt=""
+                                    src={avatar}
+                                    type="file"
+                                    name="file"
+                                    className="w-20 h-20 rounded-full object-contain"
+                                />
+                            )}
+
                             <div className="flex flex-col w-[70%] justify-center gap-y-1">
-                                <div className="bg-[#8129d9] text-white font-medium rounded-3xl w-full py-2">
+                                <button
+                                    className="bg-[#8129d9] text-white font-medium rounded-3xl w-full py-2"
+                                    onClick={handleButtonClick}
+                                >
+                                    Pick an image
+                                </button>
+                                <input
+                                    type="file"
+                                    ref={inputRef}
+                                    style={{ display: 'none' }}
+                                    onChange={handleFileInputChange}
+                                />
+                                {/* <div className="bg-[#8129d9] text-white font-medium rounded-3xl w-full py-2">
                                     <input type="file" onClick={handleFileInput} />
                                     <label htmlFor="">Pick an image</label>
-                                </div>
+                                </div> */}
 
-                                <button className=" text-black border-2 font-medium rounded-3xl w-full py-2">
+                                <button
+                                    className=" text-black border-2 font-medium rounded-3xl w-full py-2"
+                                    onClick={removeFileInputChange}
+                                >
                                     Remove
                                 </button>
                             </div>
@@ -98,7 +132,14 @@ const Appearance = () => {
                 </div>
 
                 <div className="text-xl font-medium mt-10">Themes</div>
-                <div>
+                <div className="flex gap-4 h-full ">
+                    <div className="w-[130px] h-[200px] border-black border rounded-md bg-slate-400 text-white">
+                        <div className="w-full h-full flex flex-col items-center justify-center gap-y-1">
+                            <div className="w-[80%] h-6 rounded-lg bg-slate-300 text-black flex items-center justify-center"></div>
+                            <div className="w-[80%] h-6 rounded-lg bg-slate-300 text-black flex items-center justify-center"></div>
+                            <div className="w-[80%] h-6 rounded-lg bg-slate-300 text-black flex items-center justify-center"></div>
+                        </div>
+                    </div>
                     <div className="w-[130px] h-[200px] border-black border rounded-md bg-slate-400 text-white">
                         <div className="w-full h-full flex flex-col items-center justify-center gap-y-1">
                             <div className="w-[80%] h-6 rounded-lg bg-slate-300 text-black flex items-center justify-center"></div>

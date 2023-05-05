@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const CreateLinkAccountContext = createContext();
 
@@ -9,11 +9,16 @@ const CreateLinkAccountProvider = ({ children }) => {
     const [urlInput, setUrlInput] = useState('');
 
     //Link
+
     const handleAddToCart = () => {
         const newCart = [...cart, { urlInput: urlInput, title: title, id: id }];
         setCart(newCart);
         setId(id + 1);
         setUrlInput('');
+        console.log(newCart);
+    };
+    const handleUrlInput = (e) => {
+        setUrlInput(e.target.value);
     };
     const handleInput = (e) => {
         setTitle(e.target.value);
@@ -27,7 +32,15 @@ const CreateLinkAccountProvider = ({ children }) => {
         });
         setCart(updatedCart);
     };
-
+    const handleUpdateUrl = (id, newUrl) => {
+        const updatedCart = cart.map((item) => {
+            if (item.id === id) {
+                return { ...item, urlInput: newUrl };
+            }
+            return item;
+        });
+        setCart(updatedCart);
+    };
     const removeCart = (id) => {
         const newCart = cart.filter((item) => {
             return item.id !== id;
@@ -65,6 +78,26 @@ const CreateLinkAccountProvider = ({ children }) => {
         // setIsFilePicked(true)
     };
 
+    // img appearance
+    const [imageSrc, setImageSrc] = useState(null);
+    const handleFileInputChange = (event) => {
+        const file = event.target.files[0];
+        const imageUrl = URL.createObjectURL(file);
+        setImageSrc(imageUrl);
+    };
+    const removeFileInputChange = () => {
+        setImageSrc(null);
+    };
+
+    const handleOnDragEnd = (result) => {
+        console.log(result);
+        if (!result.destination) return;
+        const items = Array.from(cart);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+        setCart(items);
+    };
+
     return (
         <CreateLinkAccountContext.Provider
             value={{
@@ -77,6 +110,11 @@ const CreateLinkAccountProvider = ({ children }) => {
                 maxInputLength,
                 checked,
                 selectedFile,
+                imageSrc,
+                handleOnDragEnd,
+                removeFileInputChange,
+                handleFileInputChange,
+                handleUrlInput,
                 handleFileInput,
                 setChecked,
                 toggleChecked,
@@ -91,6 +129,7 @@ const CreateLinkAccountProvider = ({ children }) => {
                 removeCart,
                 clearCart,
                 handleUpdateTitle,
+                handleUpdateUrl,
             }}
         >
             {children}
@@ -99,19 +138,3 @@ const CreateLinkAccountProvider = ({ children }) => {
 };
 
 export default CreateLinkAccountProvider;
-
-// const cartItem = cart.find((item) => {
-//     return item.id === id;
-// });
-// if (cartItem) {
-//     const newCart = [...cart].map((item) => {
-//         if (item.id === id) {
-//             return { ...item, amount: cartItem.amount + 1 };
-//         } else {
-//             return item;
-//         }
-//     });
-//     setCart(newCart);
-// } else {
-//     setCart([...cart, newItem]);
-// }

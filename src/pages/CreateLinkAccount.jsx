@@ -96,7 +96,7 @@ const LinkAccount = () => {
 
     return (
         <section>
-            <div className="text-base font-medium pt-20  mx-24 flex justify-between border-b-2 py-2">
+            <div className="text-base font-medium pt-20 mx-24 flex justify-between border-b-2 py-2">
                 <div className="flex gap-x-6">
                     {tabs.map((tab) => (
                         <div
@@ -245,8 +245,8 @@ const LinkAccount = () => {
                     <CiShare2 /> Share
                 </div> */}
             </div>
-            <div className="h-max-screen py-2 flex justify-around relative pb-20">
-                <div className="w-[750px] h-full mt-4 border-r px-12 placeholder:">
+            <div className="max-h-full py-2 flex  relative pb-20 flex-col justify-center items-center lg:flex-row  ">
+                <div className="w-[600px] lg:w-[650px] xl:w-[700px] max-h-full  mt-4 border-r px-12 placeholder ">
                     {/* add link */}
                     {type === 'Link' ? <CreateLink /> : <Appearance />}
                 </div>

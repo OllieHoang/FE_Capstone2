@@ -6,38 +6,45 @@ import { Link } from 'react-router-dom';
 import { CreateLinkAccountContext } from '../../contexts/CreateLinkAccountContext';
 
 const ViewLinkAccount = () => {
-    const { cart, profileTitle, inputValueIntroduction } = useContext(CreateLinkAccountContext);
+    const { cart, profileTitle, inputValueIntroduction, imageSrc } = useContext(CreateLinkAccountContext);
 
     return (
         <div className={`flex justify-center relative w-full`}>
             <div className="w-full h-full border-[10px] border-black rounded-[40px] bg-black"></div>
             <div className="absolute top-4  w-[90%] h-[90%] flex flex-col items-center text-white gap-y-4">
-                <div className="flex items-center flex-col">
-                    <img
-                        src={avatar}
-                        alt=""
-                        className="w-16 h-16 mt-10 rounded-full object-contain flex justify-center"
-                    />
+                <div className="flex items-center flex-col gap-y-2">
+                    {imageSrc ? (
+                        <img
+                            src={imageSrc}
+                            alt=""
+                            className="w-20 h-20 mt-10 rounded-full object-cover flex justify-center"
+                        />
+                    ) : (
+                        <img
+                            src={avatar}
+                            alt=""
+                            className="w-20 h-20 mt-10 rounded-full object-contain flex justify-center"
+                        />
+                    )}
+
                     {/* text  */}
                     <div className="flex flex-col items-center gap-y-1">
                         <div className="text-sm  font-medium">{profileTitle ? profileTitle : 'Your Name'}</div>
-                        <div className="text-xs">
+                        <p className="text-xs word-wrap max-w-[180px] break-words">
                             {inputValueIntroduction ? inputValueIntroduction : 'Introduction'}
-                        </div>
+                        </p>
                     </div>
                 </div>
-                <div className="flex flex-col mt-2 lg:gap-y-4 items-center w-full">
-                    {cart.map((item) => (
+                <div className="flex flex-col mt-2 gap-y-4 lg:gap-y-3 items-center w-full ">
+                    {cart.map((item, index) => (
                         <Link
-                            key={item.id}
+                            key={index}
                             to={`${item.urlInput}`}
                             id={item.id}
                             className={`bg-[#222222] rounded-xl w-[90%] h-[36px] flex items-center `}
                             target="_blank"
                         >
-                            <div className="h-full w-[20%] flex items-center justify-center">
-                                {/* <img src={`${icon}`} alt="" /> */}
-                            </div>
+                            <div className="h-full  flex items-center justify-center"></div>
                             <div
                                 onClick={() => {
                                     console.log(item.id);

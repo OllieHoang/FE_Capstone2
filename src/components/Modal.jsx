@@ -32,7 +32,7 @@ const Modal = () => {
     return (
         <section>
             <div className="w-full h-[350px] z-20 shadow-lg ">
-                <div className={`${isActive ? 'hidden ' : 'block'} `}>
+                <div className={`${isActive ? 'hidden ' : 'block '} `}>
                     <div className="flex justify-between pt-4">
                         <div className="font-medium text-sm">Enter Url</div>
                         <div

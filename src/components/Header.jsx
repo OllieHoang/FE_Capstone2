@@ -57,7 +57,7 @@ const Header = (props) => {
         >
             <div className="flex justify-between items-center  w-full flex-initial h-12 ">
                 <div className="text-2xl text-red-800 font-medium">
-                    <Link to={`${userId ? `/home` : '/'}`}>SCIS.com.vn</Link>
+                    <Link to={`${userId ? `/` : '/'}`}>SCIS.com.vn</Link>
                     {/* <Link to={`/`}>SCIS.com.vn</Link> */}
                 </div>
                 <div className="flex ">

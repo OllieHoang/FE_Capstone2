@@ -53,8 +53,10 @@ const User = ({ title }) => {
                 <div className="w-[90%] flex flex-col gap-y-2">
                     <div className="flex gap-x-24">
                         <input type="checkbox" />
-                        <div className="font-medium text-sm">Invoice ID</div>
+                        <div className="font-medium text-sm">STT</div>
                         <div className="font-medium text-sm">User name</div>
+                        <div className="font-medium text-sm">Email</div>
+                        <div className="font-medium text-sm">Phone Number</div>
                         <div className="font-medium text-sm">Role</div>
                     </div>
                     <div className="flex gap-x-24 mt-2">

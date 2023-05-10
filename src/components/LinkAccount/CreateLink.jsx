@@ -8,9 +8,10 @@ import imgpinter from '../../assets/imgs/iconpinterest.svg';
 import { ModalContext } from '../../contexts/ModalContext';
 import ContentLinkAccount from './ContentLinkAccount';
 import { CreateLinkAccountContext } from '../../contexts/CreateLinkAccountContext';
-const CreateLink = ({ content }) => {
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+const CreateLink = () => {
     const { isActive, setIsActive } = useContext(ModalContext);
-    const { cart, setUrlInput, urlInput, handleAddToCart } = useContext(CreateLinkAccountContext);
+    const { cart, setUrlInput, urlInput, handleAddToCart, handleOnDragEnd } = useContext(CreateLinkAccountContext);
 
     const [isLink, setIsLink] = useState(false);
 
@@ -41,7 +42,7 @@ const CreateLink = ({ content }) => {
                 <button>Add link</button>
             </div>
             <div className={`${isActive ? ' hidden ' : ' block '}  `}>
-                <div className="w-full h-[350px] z-20 shadow-lg ">
+                <div className="w-full h-[350px] z-20 shadow-lg px-8 py-2">
                     <div className={`${isActive ? 'hidden ' : 'block'} `}>
                         <div className="flex justify-between pt-4">
                             <div className="font-medium text-sm">Enter Url</div>
@@ -143,10 +144,13 @@ const CreateLink = ({ content }) => {
                     </div>
                 </div>
             </div>
-            <div>
-                {cart.map((item) => (
-                    <ContentLinkAccount key={item.id} isActive={isActive} urlInput={item.urlInput} data={item} />
-                ))}
+
+            <div className="listContentLinkAccount">
+                <ContentLinkAccount isActive={isActive} />
+                {/* {cart.map((item) => (
+                    // <ContentLinkAccount key={item.id} isActive={isActive} urlInput={item.urlInput} data={item} />
+                    <ContentLinkAccount key={item.id} isActive={isActive} urlInput={item.urlInput} />
+                ))} */}
             </div>
         </div>
     );

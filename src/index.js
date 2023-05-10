@@ -12,9 +12,7 @@ root.render(
     <SidebarProvider>
         <ModalProvider>
             <CreateLinkAccountProvider>
-                <React.StrictMode>
-                    <App />
-                </React.StrictMode>
+                <App />
             </CreateLinkAccountProvider>
         </ModalProvider>
     </SidebarProvider>,

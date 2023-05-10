@@ -57,7 +57,7 @@ const Header = (props) => {
         >
             <div className="flex justify-between items-center  w-full flex-initial h-12 ">
                 <div className="text-2xl text-red-800 font-medium">
-                    <Link to={`${userId ? `/home` : '/'}`}>SCIS.com.vn</Link>
+                    <Link to={`${userId ? `/` : '/'}`}>SCIS.com.vn</Link>
                     {/* <Link to={`/`}>SCIS.com.vn</Link> */}
                 </div>
                 <div className="flex ">
@@ -67,7 +67,7 @@ const Header = (props) => {
                     <div className="lg:flex xl:gap-x-14 lg:gap-x-10 hidden justify-between w-full text-[1.1rem] font-normal ">
                         <Link to="/rules">Rules</Link>
                         <Link to="/link">Link</Link>
-                        <Link to="/shortLink">Shorten Link</Link>
+                        <Link to="/shop">Shop</Link>
                         <Link to={`/qrcode`}>Qrcode</Link>
                     </div>
                 </div>

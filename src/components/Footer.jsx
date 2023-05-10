@@ -8,7 +8,7 @@ import insta from '../assets/imgs/insta.png';
 
 const Footer = () => {
     return (
-        <div className="bg-black">
+        <div className="bg-black w-full">
             <div className="text-white px-20 py-14 lg:flex justify-between flex-col lg:flex-row">
                 <div className="flex flex-col gap-y-2 ">
                     <div>

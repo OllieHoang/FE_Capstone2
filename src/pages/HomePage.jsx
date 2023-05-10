@@ -5,8 +5,8 @@ import Header from '../components/Header';
 const Page = ({ children }) => {
     return (
         <>
-            <div className="container h-screen">
-                <div className="header w-full">
+            <div className=" h-screen ">
+                <div className="header ">
                     <Header />
                 </div>
                 <div>{children}</div>

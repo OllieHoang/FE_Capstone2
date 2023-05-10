@@ -133,8 +133,8 @@ const Main = () => {
 
                 <div className="6 flex  w-full h-[255px]  justify-center my-30 ">
                     <div className=" flex flex-col lg:flex-row justify-around items-center w-full h-full gap-y-4">
-                        <div className="w-[255px] h-[127px] bg-white rounded flex justify-center  flex-col gap-y-4">
-                            <div className=" flex  items-center gap-x-2">
+                        <div className="w-[275px] h-[150px] px-8 py-4 bg-white rounded flex justify-center  flex-col gap-y-4">
+                            <div className=" flex  items-center gap-x-2 bg-slate-100 rounded-sm px-2 py-1">
                                 <img src={icpject} alt="" className="w-6 h-5 " />
                                 <div className="font-medium text-xl">Project</div>
                             </div>
@@ -142,22 +142,22 @@ const Main = () => {
                                 The easiest way to categorize your managed resources.
                             </div>
                         </div>
-                        <div className="w-[255px] h-[127px] bg-white rounded flex justify-center flex-col gap-y-4">
-                            <div className=" flex  items-center gap-x-2">
+                        <div className="w-[290px] h-[150px] px-4 bg-white rounded flex justify-center flex-col gap-y-4">
+                            <div className=" flex  items-center gap-x-2  bg-slate-100 rounded-sm px-2 py-1">
                                 <img src={icpixel} alt="" className="w-6 h-5 " />
                                 <div className="font-medium text-xl">Pixel tracking </div>
                             </div>
-                            <div className=" text-sm text-gray-700">
+                            <div className=" text-sm text-gray-700 w-full px-5">
                                 Facebook, Google Analytics, Google Tag Manager, LinkedIn, Pinterest, Twitter, Quora,
                                 TikTok pixel tracking available.
                             </div>
                         </div>
-                        <div className="w-[255px] h-[127px] bg-white rounded flex justify-center flex-col gap-y-4">
-                            <div className=" flex  items-center gap-x-2">
+                        <div className="w-[280px] h-[150px] px-4 bg-white rounded flex justify-center flex-col gap-y-4">
+                            <div className=" flex  items-center gap-x-2 px-5 bg-slate-100 rounded-sm py-1">
                                 <img src={icdomain} alt="" className="w-6 h-5 " />
                                 <div className="font-medium text-xl">Custom domains </div>
                             </div>
-                            <div className=" text-sm text-gray-700">
+                            <div className=" text-sm text-gray-700 px-5">
                                 Connect your own domain or use our predefined ones.
                             </div>
                         </div>

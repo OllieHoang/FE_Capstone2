@@ -14,6 +14,9 @@ import AdminPage from './pages/AdminPage';
 import CreateLinkAccount from './pages/CreateLinkAccount';
 import Demo from './pages/Demo';
 import Test from './pages/Test';
+import Shop from './shop/App';
+// import DefaultLayout from './shop/layouts/DefaultLayout.js';
+// import HomeShop from './shop/pages/Home/index.js';
 
 function App() {
     return (
@@ -70,7 +73,9 @@ function App() {
                                 </Page>
                             }
                         ></Route>
-
+                        <Route path={'/shop'} element={<Shop />}>
+                            {/* <Route path={'/shop'} element={<HomeShop />}></Route> */}
+                        </Route>
                         <Route path={'/demo/:qrcodeName'} element={<Demo />}></Route>
                         <Route path="/delete" element={<DeleteAccount />}></Route>
                         <Route path="/admin" element={<AdminPage />}></Route>

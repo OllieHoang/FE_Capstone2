@@ -45,7 +45,7 @@ const ProfileAccount = () => {
                 IDcard: values.cardid,
             })
                 .then((data) => {
-                    toast.success('Update profile sucess!', {
+                    toast.success('Update profiile success!', {
                         position: 'top-right',
                         autoClose: 1000,
                         hideProgressBar: false,
@@ -80,6 +80,8 @@ const ProfileAccount = () => {
     });
     return (
         <form className="w-[50%] mx-auto flex flex-col gap-y-6 mt-6" onSubmit={formik.handleSubmit}>
+            <ToastContainer />
+
             <div className="flex gap-x-4">
                 <img
                     src={avtar}
@@ -155,7 +157,6 @@ const ProfileAccount = () => {
                 <button type="submit" className="w-[60%] h-12 bg-[#070B27] rounded my-10 text-white ">
                     Save changes
                 </button>
-                <ToastContainer />
             </div>
         </form>
     );

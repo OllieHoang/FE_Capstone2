@@ -20,16 +20,13 @@ const NavbarRespon = () => {
                 >
                     <div className="flex flex-col gap-y-5 w-[350px]  items-center py-10">
                         <div className=" hover:bg-slate-500 w-[300px] flex justify-center items-center p-2 rounded-md">
-                            <Link to={'/'}>Rules</Link>
+                            <Link to={'/link'}>Link</Link>
                         </div>
                         <div className=" hover:bg-slate-500 w-[300px] flex justify-center items-center p-2 rounded-md">
-                            <Link to={'/'}>Demos</Link>
+                            <Link to={'/shop'}>Shop</Link>
                         </div>
                         <div className=" hover:bg-slate-500 w-[300px] flex justify-center items-center p-2 rounded-md">
-                            <Link to={'/'}>Shorten Link</Link>
-                        </div>
-                        <div className=" hover:bg-slate-500 w-[300px] flex justify-center items-center p-2 rounded-md">
-                            <Link to={'/'}>Tools</Link>
+                            <Link to={'/qrcode'}>Qrcode</Link>
                         </div>
                         <div className=" hover:bg-slate-500 w-[300px] flex justify-center items-center p-2 rounded-md">
                             <Link to={'/login'}>Login</Link>

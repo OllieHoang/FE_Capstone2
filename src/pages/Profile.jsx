@@ -5,6 +5,7 @@ import avatar from '../assets/imgs/avtar.jpg';
 
 import { RiAccountCircleLine } from 'react-icons/ri';
 import { AiOutlineSetting } from 'react-icons/ai';
+// import { format, utcToZonedTime } from 'date-fns-tz';
 
 const Profile = () => {
     // const navigate = useNavigate();
@@ -13,6 +14,12 @@ const Profile = () => {
     const [phone, setPhone] = useState('');
     const [birthday, setBirthday] = useState('');
     const [cardID, setCardID] = useState('');
+
+    // const dateString = birthday;
+    // const date = new Date(dateString);
+    // const timeZone = 'Asia/Ho_Chi_Minh';
+    // const zonedDate = utcToZonedTime(date, timeZone);
+    // const formattedDate = format(zonedDate, 'yyyy-MM-dd HH:mm:ss');
 
     const infoUser = JSON.parse(localStorage.getItem('infoUser'));
     useEffect(() => {
